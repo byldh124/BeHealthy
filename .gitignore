@@ -13,3 +13,15 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# IntelliJ
+.idea/
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+
+
+app/build
+domain/build
+data/build
+common/build
