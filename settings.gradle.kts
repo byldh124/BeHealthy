@@ -17,9 +17,12 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("libs") {
-            from(files("gradle/comm.versions.toml"))
+            from(files("gradle/common.versions.toml"))
         }
     }
 }
 rootProject.name = "BeHealthy"
 include (":app")
+include(":data")
+include(":domain")
+include(":common")
