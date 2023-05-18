@@ -3,11 +3,12 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.android.kotlin.kapt)
+    alias(libs.plugins.android.kotlin.ksp)
     alias(libs.plugins.android.hilt)
 }
 
 android {
-    namespace = "com.moondroid.healthy.data"
+    namespace = "com.moondroid.behealthy.data"
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
     defaultConfig {
@@ -42,9 +43,10 @@ dependencies {
     implementation(libs.bundles.squareup)
 
     // Room
-    kapt(libs.room.compiler)
     implementation(libs.bundles.room)
     implementation(libs.room.testing)
+    //kapt -> ksp migration https://kotlinlang.org/docs/ksp-overview.html#supported-libraries
+    ksp(libs.room.compiler)
 
     //hilt
     // Hilt

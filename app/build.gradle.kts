@@ -8,15 +8,15 @@ plugins {
 }
 
 android {
-    namespace = "com.moondroid.healthy"
-    compileSdk = libs.versions.compile.sdk.get().toInt()
+    namespace = "com.moondroid.behealthy"
+    compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.moondroid.healthy"
-        minSdk = libs.versions.min.sdk.get().toInt()
-        targetSdk = libs.versions.target.sdk.get().toInt()
+        applicationId = "com.moondroid.behealthy"
+        minSdk = 23
+        targetSdk = 33
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -25,8 +25,15 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
+            isDebuggable = true
+        }
+
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = false
+            isDebuggable = false
             @Suppress("UnstableApiUsage")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -46,13 +53,10 @@ android {
 
     @Suppress("UnstableApiUsage")
     buildFeatures {
-        //compose = true
+        buildConfig = true
         viewBinding = true
         dataBinding = true
     }
-    /*composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.2"
-    }*/
 }
 
 dependencies {

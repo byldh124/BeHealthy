@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.moondroid.healthy.common"
+    namespace = "com.moondroid.behealthy.common"
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
     defaultConfig {
@@ -25,6 +25,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = libs.versions.java.get()
+    }
+
+    @Suppress("UnstableApiUsage")
+    buildFeatures {
+        buildConfig = true
     }
 }
 

@@ -7,6 +7,6 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.moondroid.healthy.view.ui.splash.SplashFragment"
+        android:name="com.moondroid.behealthy.view.ui.splash.SplashFragment"
         tools:layout="@layout/fragment_splash" />
 </navigation>

@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.moondroid.healthy.domain"
+    namespace = "com.moondroid.behealthy.domain"
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
     defaultConfig {

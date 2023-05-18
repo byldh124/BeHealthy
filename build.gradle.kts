@@ -1,6 +1,10 @@
 buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
     dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.20")
+        classpath(libs.kotlin.gradleplugin)
     }
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
@@ -10,6 +14,7 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.android.kotlin) apply false
     alias(libs.plugins.android.kotlin.kapt) apply false
+    alias(libs.plugins.android.kotlin.ksp) apply false
     alias(libs.plugins.android.hilt) apply false
     alias(libs.plugins.android.navigation.safeargs) apply false
     alias(libs.plugins.firebase.crashlytics) apply false

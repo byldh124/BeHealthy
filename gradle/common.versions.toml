@@ -4,6 +4,7 @@ room = "2.5.1"
 glide = "4.15.1"
 retrofit2 = "2.9.0"
 kotlin = "1.8.20"
+ksp = "1.8.20-1.0.10"
 hilt = "2.45"
 navigation = "2.5.3"
 navigation-safeargs = "2.5.2"
@@ -66,6 +67,7 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt"
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 
 # kotlin
+kotlin-gradleplugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
@@ -145,4 +147,5 @@ android-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
 android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+android-kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 android-kotlin-parcelize = {id = "org.jetbrains.kotlin.plugin.parcelize" , version.ref = "kotlin"}
