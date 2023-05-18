@@ -94,3 +94,7 @@ dependencies {
     implementation((project(":data")))
     implementation((project(":domain")))
 }
+
+kapt {
+    correctErrorTypes = true
+}

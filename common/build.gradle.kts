@@ -57,3 +57,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines)
     implementation(libs.androidx.appcompat)
 }
+
+kapt {
+    correctErrorTypes = true
+}

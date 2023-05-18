@@ -57,3 +57,7 @@ dependencies {
     implementation((project(":domain")))
     implementation((project(":common")))
 }
+
+kapt {
+    correctErrorTypes = true
+}

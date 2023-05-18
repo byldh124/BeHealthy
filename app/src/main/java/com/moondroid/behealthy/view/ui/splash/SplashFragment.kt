@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import com.moondroid.behealthy.BuildConfig
+import com.moondroid.behealthy.R
 import com.moondroid.behealthy.common.Extensions.debug
 import com.moondroid.behealthy.common.Extensions.logException
 import com.moondroid.behealthy.common.ResponseCode
@@ -15,6 +16,7 @@ import com.moondroid.behealthy.databinding.FragmentSplashBinding
 import com.moondroid.behealthy.domain.model.BaseResponse
 import com.moondroid.behealthy.domain.model.status.onSuccess
 import com.moondroid.behealthy.domain.usecase.application.AppVersionUseCase
+import com.moondroid.behealthy.utils.viewBinding
 import com.moondroid.behealthy.view.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -24,22 +26,11 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SplashFragment : BaseFragment() {
-    private var _binding: FragmentSplashBinding? = null
-    private val binding get() = _binding!!
+class SplashFragment : BaseFragment(R.layout.fragment_splash) {
 
+    private val binding by viewBinding(FragmentSplashBinding::bind)
     @Inject
     lateinit var checkAppVersion: AppVersionUseCase
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentSplashBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

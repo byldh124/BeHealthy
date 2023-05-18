@@ -45,3 +45,7 @@ dependencies {
     // clean architecture : project struct
     implementation((project(":common")))
 }
+
+kapt {
+    correctErrorTypes = true
+}
