@@ -22,7 +22,7 @@ class AppRepositoryImpl @Inject constructor(private val remoteDataSource: Remote
             remoteDataSource.checkAppVersion(versionCode, versionName, packageName).run {
                 when (this) {
                     is ApiResult.Success -> emit(ApiResult.Success(response.toBaseResponse()))
-                    is ApiResult.ApiError -> emit(ApiResult.ApiError(message, code))
+                    is ApiResult.ApiError -> emit(ApiResult.ApiError(code))
                     is ApiResult.NetworkError -> emit(ApiResult.NetworkError(throwable))
                 }
             }

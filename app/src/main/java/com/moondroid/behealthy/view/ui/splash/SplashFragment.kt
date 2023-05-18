@@ -78,6 +78,6 @@ class SplashFragment : BaseFragment() {
 
     private fun checkUserInfo() {
         //TODO Room 에 저장된 유저 정보 수집
-        debug("checkUseInfo api call")
+        debug("checkUseInfo method call")
     }
 }

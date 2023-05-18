@@ -19,7 +19,7 @@ internal class ResponseCall<T> constructor(
                         callback.onResponse(this@ResponseCall, Response.success(ApiResult.Success(it)))
                     }
                     in 400..409 -> {
-                        callback.onResponse(this@ResponseCall, Response.success(ApiResult.ApiError(response.message(), response.code())))
+                        callback.onResponse(this@ResponseCall, Response.success(ApiResult.ApiError(response.code())))
                     }
                 }
             }?: callback.onResponse(this@ResponseCall, Response.success(ApiResult.NetworkError(
