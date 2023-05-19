@@ -11,5 +11,6 @@ class BeHealthyApp: Application() {
         super.onCreate()
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         NetworkConnection.init(applicationContext)
+        //Prefs
     }
 }
