@@ -8,5 +8,15 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.moondroid.behealthy.view.ui.splash.SplashFragment"
-        tools:layout="@layout/fragment_splash" />
+        tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/splashToSign"
+            app:destination="@id/signFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/signFragment"
+        android:name="com.moondroid.behealthy.view.ui.sign.SignFragment"
+        tools:layout="@layout/fragment_sign"/>
 </navigation>

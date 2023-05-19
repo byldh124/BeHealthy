@@ -15,11 +15,13 @@ okHttp = "5.0.0-alpha.11"
 coroutines = "1.6.4"
 camerax = "1.2.2"
 firebaseBom = "31.2.0"
-firebaseCrashlyticsPlugin = "2.9.2"
 java = "17"
 min-sdk = "23"
 compile-sdk = "33"
 target-sdk = "33"
+google-service = "4.3.15"
+crashlytice-plugin = "2.9.5"
+kakao = "2.13.0"
 
 [libraries]
 # androidx
@@ -61,6 +63,8 @@ navigation-dynamic-features = { module = "androidx.navigation:navigation-dynamic
 google-material = "com.google.android.material:material:1.8.0"
 google-oss-licenses = "com.google.android.gms:play-services-oss-licenses:17.0.0"
 google-gson = "com.google.code.gson:gson:2.10.1"
+google-service = { module = "com.google.gms:google-services", version.ref = "google-service" }
+google-sign = "com.google.android.gms:play-services-auth:20.5.0"
 
 # hilt
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
@@ -88,6 +92,14 @@ firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.r
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx", version = "21.2.2" }
 firebase-cloud-messaging = { group = "com.google.firebase", name = "firebase-messaging-ktx", version = "23.1.2" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx", version = "18.3.7" }
+firebase-crashlytics-gradle-plugin = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "crashlytice-plugin" }
+
+#kakao
+kakao-user = { group = "com.kakao.sdk" , name = "v2-user", version.ref = "kakao"}
+kakao-talk = { group = "com.kakao.sdk" , name = "v2-talk", version.ref = "kakao"}
+kakao-share = { group = "com.kakao.sdk" , name = "v2-share", version.ref = "kakao"}
+kakao-friend = { group = "com.kakao.sdk" , name = "v2-friend", version.ref = "kakao"}
+
 
 #tensorflow
 tensorflow-lite = { module = "org.tensorflow:tensorflow-lite", version = "2.10.0" }
@@ -138,14 +150,22 @@ firebase = [
     "firebase-cloud-messaging"
 ]
 
+kakao = [
+    "kakao-friend",
+    "kakao-user",
+    "kakao-talk",
+    "kakao-share"
+]
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradleplugin" }
 android-library = { id = "com.android.library", version.ref = "gradleplugin" }
 android-navigation-safeargs = { id = "androidx.navigation.safeargs", version.ref = "navigation-safeargs" }
 android-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytice-plugin" }
 android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 android-kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-android-kotlin-parcelize = {id = "org.jetbrains.kotlin.plugin.parcelize" , version.ref = "kotlin"}
+android-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+google-service = { id = "com.google.gms.google-services", version.ref = "google-service" }

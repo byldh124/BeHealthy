@@ -1,12 +1,4 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath(libs.kotlin.gradleplugin)
-    }
-}
+import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin.Companion.classLoadersCacheSize
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -19,6 +11,7 @@ plugins {
     alias(libs.plugins.android.navigation.safeargs) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.android.kotlin.parcelize) apply false
+    alias(libs.plugins.google.service) apply false
 }
 
 tasks.register("clean", Delete::class) {

@@ -2,9 +2,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.android.kotlin.kapt)
-    alias(libs.plugins.android.kotlin.ksp)
     alias(libs.plugins.android.hilt)
+    alias(libs.plugins.android.kotlin.kapt)
 }
 
 android {
@@ -46,7 +45,7 @@ dependencies {
     implementation(libs.bundles.room)
     implementation(libs.room.testing)
     //kapt -> ksp migration https://kotlinlang.org/docs/ksp-overview.html#supported-libraries
-    ksp(libs.room.compiler)
+    kapt(libs.room.compiler)
 
     //hilt
     // Hilt

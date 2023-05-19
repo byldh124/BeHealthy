@@ -12,6 +12,12 @@
     <color name="defaultText">#1f1f1f</color>
     <color name="dialog">#88000000</color>
 
+    <color name="green_01">#3C6255</color>
+    <color name="green_02">#61876E</color>
+    <color name="green_03">#A6BB8D</color>
+    <color name="green_04">#EAE7B1</color>
+
+
     <color name="blue_01">#0a54a2</color>
     <color name="blue_02">#063d7f</color>
     <color name="gray_01">#76787b</color>

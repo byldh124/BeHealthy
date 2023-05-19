@@ -2,9 +2,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.android.kotlin.kapt)
     alias(libs.plugins.android.hilt)
     alias(libs.plugins.android.navigation.safeargs)
+    alias(libs.plugins.google.service)
+    alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.android.kotlin.kapt)
 }
 
 android {
@@ -89,6 +91,12 @@ dependencies {
 
     // Navigation
     implementation(libs.bundles.navigation)
+
+    implementation(libs.bundles.firebase)
+
+    implementation(libs.google.sign)
+
+    implementation(libs.bundles.kakao)
 
     implementation((project(":common")))
     implementation((project(":data")))
