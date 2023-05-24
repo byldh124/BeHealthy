@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tab_board"
+    app:startDestination="@id/boardListFragment">
+
+    <fragment
+        android:id="@+id/boardListFragment"
+        android:name="com.moondroid.behealthy.view.ui.board.BoardListFragment"
+        tools:layout="@layout/fragment_board_list">
+        <action
+            android:id="@+id/action_boardListFragment_to_boardWriteFragment"
+            app:destination="@id/boardWriteFragment" />
+        <action
+            android:id="@+id/action_boardListFragment_to_boardDetailFragment"
+            app:destination="@id/boardDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/boardWriteFragment"
+        android:name="com.moondroid.behealthy.view.ui.board.BoardWriteFragment"
+        tools:layout="@layout/fragment_board_write"/>
+
+    <fragment
+        android:id="@+id/boardDetailFragment"
+        android:name="com.moondroid.behealthy.view.ui.board.BoardDetailFragment"
+        tools:layout="@layout/fragment_board_detail"/>
+</navigation>

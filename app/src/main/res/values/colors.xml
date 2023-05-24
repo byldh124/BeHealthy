@@ -17,5 +17,10 @@
     <color name="blue_03">#205295</color>
     <color name="blue_04">#2C74B3</color>
 
+    <color name="gray_light01">#A1A1A1</color>
+    <color name="gray_01">#76787b</color>
+    <color name="gray_02">#4c4d4e</color>
+    <color name="gray_03">#3d3d3d</color>
+
     <color name="transparent_white">#aaffffff</color>
 </resources>

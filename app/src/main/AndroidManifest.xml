@@ -21,7 +21,7 @@
         android:theme="@style/Theme.BeHealthy"
         tools:targetApi="33">
         <activity
-            android:name=".view.ui.MainActivity"
+            android:name=".view.ui.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -30,6 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".view.ui.sign.SignActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".view.ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"

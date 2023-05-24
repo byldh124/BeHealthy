@@ -16,6 +16,8 @@ dependencyResolutionManagement {
         maven { url = uri("https://devrepo.kakao.com/nexus/content/groups/public/") }
     }
 
+
+
     versionCatalogs {
         create("libs") {
             from(files("gradle/common.versions.toml"))

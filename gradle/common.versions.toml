@@ -74,6 +74,7 @@ hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hil
 kotlin-gradleplugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlin-stdlib = {module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin"}
 
 # glide
 glide-android = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
@@ -100,9 +101,8 @@ kakao-talk = { group = "com.kakao.sdk" , name = "v2-talk", version.ref = "kakao"
 kakao-share = { group = "com.kakao.sdk" , name = "v2-share", version.ref = "kakao"}
 kakao-friend = { group = "com.kakao.sdk" , name = "v2-friend", version.ref = "kakao"}
 
-
-#tensorflow
-tensorflow-lite = { module = "org.tensorflow:tensorflow-lite", version = "2.10.0" }
+#lottie
+lottie-animation = "com.airbnb.android:lottie:6.0.0"
 
 # test
 junit = "junit:junit:4.13.2"
@@ -110,6 +110,11 @@ junit-ext = "androidx.test.ext:junit:1.1.5"
 junit-espresso = "androidx.test.espresso:espresso-core:3.5.1"
 
 [bundles]
+kotlin= [
+    "androidx.core.ktx",
+    "kotlin.stdlib",
+    "kotlin.reflect"
+]
 room = [
     "room.runtime",
     "room.guava",

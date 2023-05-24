@@ -34,10 +34,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-
-    // Kotlin
-    implementation(libs.kotlin.reflect)
+    implementation(libs.bundles.kotlin)
 
     // Hilt
     implementation(libs.hilt.android)

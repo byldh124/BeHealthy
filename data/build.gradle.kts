@@ -29,11 +29,7 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
-
-    // Kotlin
-    implementation(libs.kotlin.reflect)
+    implementation(libs.bundles.kotlin)
 
     // Gson
     implementation(libs.google.gson)

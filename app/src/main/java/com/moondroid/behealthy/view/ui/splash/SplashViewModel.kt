@@ -10,6 +10,7 @@ import com.moondroid.behealthy.utils.MutableEventFlow
 import com.moondroid.behealthy.utils.asEventFlow
 import com.moondroid.behealthy.view.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,6 +27,7 @@ class SplashViewModel @Inject constructor(
         packageName: String,
     ) {
         viewModelScope.launch {
+            delay(2000)
             appVersionUseCase(versionCode, versionName, packageName).collect { result ->
                 result.onSuccess {
                     event(SplashEvent.Version(it.code))

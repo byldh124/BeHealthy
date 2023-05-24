@@ -62,7 +62,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
+    implementation(libs.bundles.kotlin)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.google.material)
@@ -82,9 +82,6 @@ dependencies {
     // Gson
     implementation(libs.google.gson)
 
-    // Kotlin
-    implementation(libs.kotlin.reflect)
-
     // Lifecycle
     kapt(libs.androidx.lifecycle.compiler)
     implementation(libs.bundles.lifecycle)
@@ -97,6 +94,8 @@ dependencies {
     implementation(libs.google.sign)
 
     implementation(libs.bundles.kakao)
+
+    implementation(libs.lottie.animation)
 
     implementation((project(":common")))
     implementation((project(":data")))
