@@ -3,6 +3,7 @@ package com.moondroid.behealthy.data.repository
 import com.moondroid.behealthy.data.datasource.remote.RemoteDataSource
 import com.moondroid.behealthy.data.mapper.DataMapper.toBaseResponse
 import com.moondroid.behealthy.domain.model.BaseResponse
+import com.moondroid.behealthy.domain.model.Profile
 import com.moondroid.behealthy.domain.model.status.ApiResult
 import com.moondroid.behealthy.domain.repository.AppRepository
 import kotlinx.coroutines.Dispatchers
@@ -27,5 +28,15 @@ class AppRepositoryImpl @Inject constructor(private val remoteDataSource: Remote
                 }
             }
         }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun sign(
+        id: String,
+        name: String,
+        thumb: String,
+        token: String,
+        type: Int,
+    ): Flow<ApiResult<Profile>> {
+        TODO("Not yet implemented")
     }
 }

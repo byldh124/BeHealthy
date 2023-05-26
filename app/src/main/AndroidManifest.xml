@@ -23,7 +23,7 @@
         <activity
             android:name=".view.ui.splash.SplashActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.WhiteHeader">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,9 +32,9 @@
         </activity>
 
         <activity android:name=".view.ui.sign.SignActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.BlueHeader"/>
         <activity android:name=".view.ui.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.WhiteHeader"/>
 
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"

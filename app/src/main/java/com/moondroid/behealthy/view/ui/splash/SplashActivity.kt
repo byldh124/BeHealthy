@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.moondroid.behealthy.BuildConfig
 import com.moondroid.behealthy.R
+import com.moondroid.behealthy.common.Extensions.finishWithAnim
 import com.moondroid.behealthy.common.Extensions.logException
 import com.moondroid.behealthy.common.Extensions.repeatOnStarted
 import com.moondroid.behealthy.common.ResponseCode
@@ -64,11 +65,11 @@ class SplashActivity : BaseActivity(R.layout.activity_splash) {
             is SplashEvent.Version -> checkAppVersion(event.code)
             SplashEvent.Home -> {
                 startActivity(Intent(this, MainActivity::class.java))
-                finish()
+                finishWithAnim()
             }
             SplashEvent.Sign -> {
                 startActivity(Intent(this, SignActivity::class.java))
-                finish()
+                finishWithAnim()
             }
         }
     }

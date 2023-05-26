@@ -14,3 +14,12 @@ object ApiParam {
     const val VERSION_NAME = "versionName"
     const val PACKAGE_NAME = "packageName"
 }
+
+object RoomParam {
+    const val PROFILE_TABLE_NAME = "BH_Profile"
+    const val PROFILE_ID = "PROFILE_ID"
+    const val PROFILE_NAME = "PROFILE_NAME"
+    const val PROFILE_THUMB = "PROFILE_THUMB"
+    const val PROFILE_TOKEN = "PROFILE_TOKEN"
+    const val PROFILE_TYPE = "PROFILE_TYPE"
+}

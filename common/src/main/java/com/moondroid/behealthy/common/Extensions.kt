@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -48,5 +49,9 @@ object Extensions {
                 afterTextChanged.invoke(editable.toString())
             }
         })
+    }
+    fun AppCompatActivity.finishWithAnim() {
+        finish()
+        overridePendingTransition(android.R.anim.fade_in, 0)
     }
 }
