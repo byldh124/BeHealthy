@@ -1,9 +1,14 @@
 package com.moondroid.behealthy.domain.model.status
 
 sealed class ApiResult<out T> {
+    //ResponseCode = 1000(o)
     data class Success<out T>(val response: T) : ApiResult<T>()
-    data class ApiError<T>(val code: Int) : ApiResult<T>()
-    data class NetworkError<T>(val throwable: Throwable) : ApiResult<T>()
+
+    //ResponseCode = 1000(x)
+    data class Fail<T>(val code: Int) : ApiResult<T>()
+
+    //통신 에러
+    data class Error<T>(val throwable: Throwable) : ApiResult<T>()
 }
 
 inline fun <T : Any> ApiResult<T>.onSuccess(action: (T) -> Unit): ApiResult<T> {
@@ -11,12 +16,12 @@ inline fun <T : Any> ApiResult<T>.onSuccess(action: (T) -> Unit): ApiResult<T> {
     return this
 }
 
-inline fun <T : Any> ApiResult<T>.onApiError(action: (Int) -> Unit): ApiResult<T> {
-    if (this is ApiResult.ApiError) action(code)
+inline fun <T : Any> ApiResult<T>.onFail(action: (Int) -> Unit): ApiResult<T> {
+    if (this is ApiResult.Fail) action(code)
     return this
 }
 
-inline fun <T : Any> ApiResult<T>.onNetworkError(action: (Throwable) -> Unit): ApiResult<T> {
-    if (this is ApiResult.NetworkError) action(throwable)
+inline fun <T : Any> ApiResult<T>.onError(action: (Throwable) -> Unit): ApiResult<T> {
+    if (this is ApiResult.Error) action(throwable)
     return this
 }

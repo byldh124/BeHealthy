@@ -10,7 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-fun BottomNavigationView.setupWithNavController(
+fun BottomNavigationView.setupWithNavControllers(
     navGraphIds: List<Int>,
     fragmentManager: FragmentManager,
     containerId: Int,

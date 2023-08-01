@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/tab_item"
+        android:id="@id/homeFragment"
         android:enabled="true"
-        android:title="리스트"
         android:icon="@drawable/ic_list"
-        app:showAsAction="ifRoom"/>
+        android:title="리스트" />
     <item
-        android:id="@+id/tab_board"
-        android:enabled="true"
-        android:title="게시판"
+        android:id="@id/boardFragment"
         android:icon="@drawable/ic_wrtie"
-        app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/tab_setting"
         android:enabled="true"
-        android:title="설정"
+        android:title="게시판" />
+    <item
+        android:id="@id/settingFragment"
         android:icon="@drawable/ic_setting"
-        app:showAsAction="ifRoom"/>
+        android:enabled="true"
+        android:title="설정" />
 </menu>

@@ -2,21 +2,25 @@ package com.moondroid.behealthy.view.ui.splash
 
 import androidx.lifecycle.viewModelScope
 import com.moondroid.behealthy.common.Extensions.logException
-import com.moondroid.behealthy.domain.model.status.onApiError
-import com.moondroid.behealthy.domain.model.status.onNetworkError
+import com.moondroid.behealthy.domain.model.Profile
+import com.moondroid.behealthy.domain.model.status.onError
+import com.moondroid.behealthy.domain.model.status.onFail
 import com.moondroid.behealthy.domain.model.status.onSuccess
 import com.moondroid.behealthy.domain.usecase.application.AppVersionUseCase
+import com.moondroid.behealthy.domain.usecase.profile.ProfileUseCase
 import com.moondroid.behealthy.utils.MutableEventFlow
 import com.moondroid.behealthy.utils.asEventFlow
 import com.moondroid.behealthy.view.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val appVersionUseCase: AppVersionUseCase,
+    private val profileUseCase: ProfileUseCase,
 ) : BaseViewModel() {
     private val _eventFlow = MutableEventFlow<SplashEvent>()
     val eventFLow = _eventFlow.asEventFlow()
@@ -31,9 +35,9 @@ class SplashViewModel @Inject constructor(
             appVersionUseCase(versionCode, versionName, packageName).collect { result ->
                 result.onSuccess {
                     event(SplashEvent.Version(it.code))
-                }.onApiError {
+                }.onFail {
                     //TODO Handle Api Error
-                }.onNetworkError {
+                }.onError {
                     it.logException()
                 }
             }
@@ -41,10 +45,16 @@ class SplashViewModel @Inject constructor(
     }
 
     fun checkUserInfo() {
-        //TODO GetUserInfo
-        event(SplashEvent.Sign)
+        viewModelScope.launch {
+            profileUseCase().collect {
+                it?.let {
+                    event(SplashEvent.Home(it))
+                } ?: run {
+                    event(SplashEvent.Sign)
+                }
+            }
+        }
     }
-
 
     private fun event(event: SplashEvent) {
         viewModelScope.launch {
@@ -54,7 +64,7 @@ class SplashViewModel @Inject constructor(
 
     sealed class SplashEvent {
         data class Version(val code: Int) : SplashEvent()
-        object Sign: SplashEvent()
-        object Home: SplashEvent()
+        data class Home(val profile: Profile) : SplashEvent()
+        object Sign : SplashEvent()
     }
 }

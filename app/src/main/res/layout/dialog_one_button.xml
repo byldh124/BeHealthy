@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dialog">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/white_01">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="32dp"
+            android:fontFamily="@font/nanum_square_round_b"
+            android:lineSpacingExtra="2dp"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/defaultText"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/btnConfirm"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnConfirm"
+            style="@style/ConfirmButton"
+            android:text="@string/cmn_confirm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

@@ -23,3 +23,9 @@ object RoomParam {
     const val PROFILE_TOKEN = "PROFILE_TOKEN"
     const val PROFILE_TYPE = "PROFILE_TYPE"
 }
+
+object UserType {
+    const val GUEST = 0
+    const val KAKAO = 1
+    const val GOOGLE = 2
+}

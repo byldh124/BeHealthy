@@ -5,17 +5,15 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.moondroid.behealthy.BHApp
 import com.moondroid.behealthy.BuildConfig
 import com.moondroid.behealthy.R
-import com.moondroid.behealthy.common.Extensions.finishWithAnim
 import com.moondroid.behealthy.common.Extensions.logException
 import com.moondroid.behealthy.common.Extensions.repeatOnStarted
 import com.moondroid.behealthy.common.ResponseCode
-import com.moondroid.behealthy.databinding.ActivitySplashBinding
 import com.moondroid.behealthy.domain.usecase.application.AppVersionUseCase
-import com.moondroid.behealthy.utils.viewBinding
 import com.moondroid.behealthy.view.base.BaseActivity
-import com.moondroid.behealthy.view.ui.MainActivity
+import com.moondroid.behealthy.view.ui.home.HomeActivity
 import com.moondroid.behealthy.view.ui.sign.SignActivity
 import com.moondroid.behealthy.view.ui.splash.SplashViewModel.SplashEvent
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,13 +61,14 @@ class SplashActivity : BaseActivity(R.layout.activity_splash) {
     private fun handleEvent(event: SplashEvent) {
         when (event) {
             is SplashEvent.Version -> checkAppVersion(event.code)
-            SplashEvent.Home -> {
-                startActivity(Intent(this, MainActivity::class.java))
-                finishWithAnim()
+            is SplashEvent.Home -> {
+                BHApp.profile = event.profile
+                toHome()
             }
+
             SplashEvent.Sign -> {
                 startActivity(Intent(this, SignActivity::class.java))
-                finishWithAnim()
+                finish()
             }
         }
     }

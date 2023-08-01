@@ -1,6 +1,7 @@
 package com.moondroid.behealthy.data.datasource.local.room
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -13,8 +14,11 @@ interface ProfileDao {
     fun insertProfile(vararg profileEntity: ProfileEntity)
 
     @Query("SELECT * FROM ${RoomParam.PROFILE_TABLE_NAME}")
-    fun getProfile() : List<ProfileEntity>
+    fun getProfile(): List<ProfileEntity>
 
     @Query("DELETE FROM ${RoomParam.PROFILE_TABLE_NAME}")
-    fun delete()
+    fun deleteAll()
+
+    @Delete
+    fun delete(vararg: ProfileEntity)
 }

@@ -15,7 +15,11 @@ interface RemoteDataSource {
         id: String,
         name: String,
         thumb: String,
-        token: String,
-        type: Int
+        type: Int,
     ): ApiResult<ProfileEntity>
+
+    suspend fun updateToken(
+        id: String,
+        token: String,
+    ): ApiResult<BaseResponseDTO>
 }

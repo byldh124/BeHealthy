@@ -5,27 +5,50 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.lifecycle.viewModelScope
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
+import com.moondroid.behealthy.BHApp
 import com.moondroid.behealthy.R
 import com.moondroid.behealthy.common.Extensions.debug
 import com.moondroid.behealthy.common.Extensions.logException
+import com.moondroid.behealthy.common.Extensions.repeatOnStarted
+import com.moondroid.behealthy.common.UserType
 import com.moondroid.behealthy.databinding.ActivitySignBinding
+import com.moondroid.behealthy.domain.model.Profile
+import com.moondroid.behealthy.domain.model.status.onError
+import com.moondroid.behealthy.domain.model.status.onFail
+import com.moondroid.behealthy.domain.model.status.onSuccess
+import com.moondroid.behealthy.domain.usecase.profile.SignUseCase
+import com.moondroid.behealthy.domain.usecase.profile.UpdateTokenUseCase
 import com.moondroid.behealthy.utils.viewBinding
 import com.moondroid.behealthy.view.base.BaseActivity
-import com.moondroid.behealthy.view.ui.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SignActivity : BaseActivity(R.layout.activity_sign) {
     private val binding by viewBinding(ActivitySignBinding::inflate)
     private val viewModel: SignViewModel by viewModels()
+
+    @Inject
+    lateinit var signUseCase: SignUseCase
+
+    @Inject
+    lateinit var updateTokenUseCase: UpdateTokenUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +62,7 @@ class SignActivity : BaseActivity(R.layout.activity_sign) {
             tvGuest.setOnClickListener { startWithGuest() }
         }
     }
+
     private val kakaoCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         if (error != null) {
             debug("카카오톡 로그인 실패 $error")
@@ -81,7 +105,7 @@ class SignActivity : BaseActivity(R.layout.activity_sign) {
                     val id = it.id?.toString() ?: throw IllegalStateException("ID must not be null")
                     val name = it.kakaoAccount?.profile?.nickname ?: ""
                     val thumb = it.kakaoAccount?.profile?.profileImageUrl ?: ""
-                    viewModel.sign(id, name, thumb, SIGN_WITH_KAKAO)
+                    sign(id, name, thumb, UserType.KAKAO)
                 } ?: run {
                     showMessage(getString(R.string.error_kakao_user_info))
                 }
@@ -103,7 +127,7 @@ class SignActivity : BaseActivity(R.layout.activity_sign) {
                     val name = account.displayName ?: ""
                     val thumb = account.photoUrl?.toString() ?: ""
 
-                    viewModel.sign(id, name, thumb, SIGN_WITH_GOOGLE)
+                    sign(id, name, thumb, UserType.GOOGLE)
                 } else {
                     debug("result code : ${it.resultCode}")
                 }
@@ -130,13 +154,41 @@ class SignActivity : BaseActivity(R.layout.activity_sign) {
     }
 
     private fun startWithGuest() {
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+        sign("", "", "", UserType.GUEST)
     }
 
-    companion object {
-        const val SIGN_WITH_GUEST = 0
-        const val SIGN_WITH_KAKAO = 1
-        const val SIGN_WITH_GOOGLE = 2
+    private fun sign(id: String, name: String, thumb: String, userType: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            signUseCase(id, name, thumb, userType).collect { result ->
+                result.onSuccess {
+                    BHApp.profile = it
+                    getMsgToken(it.id)
+                }.onFail {
+                    showMessage("현재 서버가 불안정합니다.")
+                }.onError {
+                    it.logException()
+                }
+            }
+        }
     }
+
+    /**
+     * FCM 토큰 생성
+     * [토큰 생성되지 않은 경우에도 정상처리]
+     */
+    private fun getMsgToken(id: String) {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                toHome()
+            }
+
+            val token = task.result
+            CoroutineScope(Dispatchers.Main).launch {
+                updateTokenUseCase(id, token).collect {
+                    toHome()
+                }
+            }
+        })
+    }
+
 }

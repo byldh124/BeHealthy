@@ -7,9 +7,10 @@
     </queries>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:name=".BeHealthyApp"
+        android:name=".BHApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,8 +18,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.BeHealthy"
+        android:usesCleartextTraffic="true"
         tools:targetApi="33">
         <activity
             android:name=".view.ui.splash.SplashActivity"
@@ -31,26 +32,36 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.ui.sign.SignActivity"
-            android:theme="@style/AppTheme.BlueHeader"/>
-        <activity android:name=".view.ui.MainActivity"
-            android:theme="@style/AppTheme.WhiteHeader"/>
+        <activity
+            android:name=".view.ui.sign.SignActivity"
+            android:theme="@style/AppTheme.BlueHeader" />
+
+        <activity
+            android:name=".view.ui.home.HomeActivity"
+            android:theme="@style/AppTheme.WhiteHeader" />
+
+        <activity
+            android:name=".view.ui.item.ItemAddActivity"
+            android:theme="@style/AppTheme.WhiteHeader" />
 
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
+                <data
+                    android:host="oauth"
                     android:scheme="@string/kakao_native_app_key_scheme" />
             </intent-filter>
         </activity>
 
-        <service android:name=".utils.firebase.FBMessage"
+        <service
+            android:name=".utils.firebase.FBMessage"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

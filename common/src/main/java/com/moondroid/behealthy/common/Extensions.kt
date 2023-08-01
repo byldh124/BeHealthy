@@ -19,7 +19,7 @@ private const val TAG = "BeHealthy"
 object Extensions {
     fun Any.debug(msg: String) {
         if (BuildConfig.DEBUG) {
-            Log.d(TAG, "[${this.javaClass.simpleName}] $msg")
+            Log.e(TAG, "[${this.javaClass.simpleName}] $msg")
         }
     }
 
@@ -49,9 +49,5 @@ object Extensions {
                 afterTextChanged.invoke(editable.toString())
             }
         })
-    }
-    fun AppCompatActivity.finishWithAnim() {
-        finish()
-        overridePendingTransition(android.R.anim.fade_in, 0)
     }
 }

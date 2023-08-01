@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--Theme region start-->
+
+    <!-- ActivityTheme white status bar-->
     <style name="AppTheme.WhiteHeader" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:statusBarColor">@color/white_01</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <!-- ActivityTheme default status bar-->
     <style name="AppTheme.BlueHeader" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:statusBarColor">@color/blue_03</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
+
+    <!-- 다이얼로그 -->
+    <style name="DialogTheme">
+        <item name="android:windowBackground">@color/dialog</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+    </style>
+
+    <!--Theme Region End-->
+
 
     <style name="Toolbar">
         <item name="android:layout_width">match_parent</item>
@@ -44,6 +59,19 @@
 
     <style name="ButtonBlue01" parent="Button">
         <item name="android:background">@drawable/bg_button_blue01</item>
+    </style>
+
+    <style name="ConfirmButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:fontFamily">@font/cafe24_surround</item>
+        <item name="android:textColor">@color/white_01</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/blue_02</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>
