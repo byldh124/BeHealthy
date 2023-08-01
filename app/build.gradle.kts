@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.application)
@@ -8,6 +10,8 @@ plugins {
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.android.kotlin.kapt)
 }
+
+val properties = gradleLocalProperties(rootDir)
 
 android {
     namespace = "com.moondroid.behealthy"
@@ -24,6 +28,12 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val kakaoScheme: String = properties.getProperty("kakao.native.app.key.scheme")
+        manifestPlaceholders["kakaoScheme"] = kakaoScheme
+
+        val kakaoAppKey: String = properties.getProperty("kakao.native.app.key")
+        resValue("string", "kakao_app_key", kakaoAppKey)
     }
 
     buildTypes {

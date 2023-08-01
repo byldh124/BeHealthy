@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">참다</string>
     <string name="desc_sever_error">네트워크 요청에 실패했습니다.\n다시 시도해주세요.</string>
-    <string name="kakao_native_app_key">adc7127600b790906dad2c7971b0a04a</string>
-    <string name="kakao_native_app_key_scheme">kakaoadc7127600b790906dad2c7971b0a04a</string>
     <string name="desc_new_item">새로운 목표 설정</string>
     <string name="desc_app_compaign">마음까지 건강한 삶</string>
     <string name="desc_start_with_guest">게스트로 시작하기</string>

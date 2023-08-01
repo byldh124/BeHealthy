@@ -27,6 +27,6 @@ class BHApp : Application() {
         FBAnalyze.init(applicationContext)
 
         /* initialize kakao */
-        KakaoSdk.init(applicationContext, resources.getString(R.string.kakao_native_app_key))
+        KakaoSdk.init(applicationContext, resources.getString(R.string.kakao_app_key))
     }
 }
