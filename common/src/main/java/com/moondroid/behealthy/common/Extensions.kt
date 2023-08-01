@@ -1,5 +1,6 @@
 package com.moondroid.behealthy.common
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,6 +14,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
 
 private const val TAG = "BeHealthy"
 
@@ -50,4 +53,8 @@ object Extensions {
             }
         })
     }
+
+    @SuppressLint("SimpleDateFormat")
+    fun getToday(pattern: String = "yyMMddHhmmss") =
+        SimpleDateFormat(pattern).format(Date(System.currentTimeMillis()))
 }

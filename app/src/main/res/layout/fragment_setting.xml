@@ -13,4 +13,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:text="Setting"/>
 
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/ButtonBlue01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="로그아웃"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

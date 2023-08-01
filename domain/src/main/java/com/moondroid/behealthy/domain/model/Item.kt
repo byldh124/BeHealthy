@@ -1,7 +1,7 @@
 package com.moondroid.behealthy.domain.model
 
-data class GoalItem(
-    val index: Long,
+data class Item(
+    val index: Int,
     val id: String,
     val type: Int,
     val startDate: Long,

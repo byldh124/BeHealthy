@@ -2,19 +2,17 @@ package com.moondroid.behealthy.view.ui.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.moondroid.behealthy.R
-import com.moondroid.behealthy.common.Extensions.debug
 import com.moondroid.behealthy.common.Extensions.logException
 import com.moondroid.behealthy.common.Extensions.toast
 import com.moondroid.behealthy.databinding.ActivityHomeBinding
 import com.moondroid.behealthy.utils.viewBinding
 import com.moondroid.behealthy.view.base.BaseActivity
+import com.moondroid.behealthy.view.ui.board.BoardFragment
+import com.moondroid.behealthy.view.ui.item.ItemListFragment
+import com.moondroid.behealthy.view.ui.setting.SettingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,7 +21,7 @@ class HomeActivity : BaseActivity(R.layout.activity_home) {
     private var mBackWait = 0L
 
     private val fragments = arrayOf(
-        ItemFragment(), BoardFragment(), SettingFragment()
+        ItemListFragment(), BoardFragment(), SettingFragment()
     )
 
     fun mFinish() {
@@ -79,7 +77,7 @@ class HomeActivity : BaseActivity(R.layout.activity_home) {
     @SuppressLint("CommitTransaction")
     private fun changeFragment(fragment: Fragment) {
         try {
-            supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment)
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
                 .commit()
         } catch (e: Exception) {
             e.logException()

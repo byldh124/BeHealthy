@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.moondroid.behealthy.common.Extensions.debug
 
 open class BaseFragment(@LayoutRes layout: Int) : Fragment(layout) {
-    private lateinit var mContext: Context
+    protected lateinit var mContext: Context
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

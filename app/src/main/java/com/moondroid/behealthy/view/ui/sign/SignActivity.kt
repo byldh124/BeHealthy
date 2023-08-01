@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
-import androidx.lifecycle.viewModelScope
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -22,10 +20,8 @@ import com.moondroid.behealthy.BHApp
 import com.moondroid.behealthy.R
 import com.moondroid.behealthy.common.Extensions.debug
 import com.moondroid.behealthy.common.Extensions.logException
-import com.moondroid.behealthy.common.Extensions.repeatOnStarted
 import com.moondroid.behealthy.common.UserType
 import com.moondroid.behealthy.databinding.ActivitySignBinding
-import com.moondroid.behealthy.domain.model.Profile
 import com.moondroid.behealthy.domain.model.status.onError
 import com.moondroid.behealthy.domain.model.status.onFail
 import com.moondroid.behealthy.domain.model.status.onSuccess
@@ -42,7 +38,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SignActivity : BaseActivity(R.layout.activity_sign) {
     private val binding by viewBinding(ActivitySignBinding::inflate)
-    private val viewModel: SignViewModel by viewModels()
 
     @Inject
     lateinit var signUseCase: SignUseCase
@@ -154,10 +149,11 @@ class SignActivity : BaseActivity(R.layout.activity_sign) {
     }
 
     private fun startWithGuest() {
-        sign("", "", "", UserType.GUEST)
+        sign(userType = UserType.GUEST)
     }
 
-    private fun sign(id: String, name: String, thumb: String, userType: Int) {
+
+    private fun sign(id: String = "", name: String = "", thumb: String = "", userType: Int) {
         CoroutineScope(Dispatchers.Main).launch {
             signUseCase(id, name, thumb, userType).collect { result ->
                 result.onSuccess {
