@@ -5,20 +5,29 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.moondroid.behealthy.R
+import com.moondroid.behealthy.common.Extensions.debug
 import com.moondroid.behealthy.common.Extensions.logException
 import com.moondroid.behealthy.common.Extensions.toast
 import com.moondroid.behealthy.databinding.ActivityHomeBinding
+import com.moondroid.behealthy.domain.usecase.application.TutorialUseCase
 import com.moondroid.behealthy.utils.viewBinding
 import com.moondroid.behealthy.view.base.BaseActivity
 import com.moondroid.behealthy.view.ui.board.BoardFragment
 import com.moondroid.behealthy.view.ui.item.ItemListFragment
 import com.moondroid.behealthy.view.ui.setting.SettingFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeActivity : BaseActivity(R.layout.activity_home) {
+class HomeActivity : BaseActivity() {
     private val binding by viewBinding(ActivityHomeBinding::inflate)
     private var mBackWait = 0L
+
+    @Inject
+    lateinit var tutorialUseCase: TutorialUseCase
 
     private val fragments = arrayOf(
         ItemListFragment(), BoardFragment(), SettingFragment()
@@ -46,6 +55,12 @@ class HomeActivity : BaseActivity(R.layout.activity_home) {
                 mFinish()
             }
         })
+
+        CoroutineScope(Dispatchers.Main).launch {
+            tutorialUseCase().collect {
+                debug("tutorial : $it")
+            }
+        }
     }
 
     private fun initView() {

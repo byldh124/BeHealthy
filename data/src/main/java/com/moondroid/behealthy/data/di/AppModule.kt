@@ -5,8 +5,8 @@ import android.content.Context
 import androidx.room.Room
 import com.moondroid.behealthy.common.RoomParam
 import com.moondroid.behealthy.data.datasource.local.LocalDataSource
-import com.moondroid.behealthy.data.datasource.local.room.ProfileDao
-import com.moondroid.behealthy.data.datasource.local.room.ProfileDatabase
+import com.moondroid.behealthy.data.model.dao.ProfileDao
+import com.moondroid.behealthy.data.datasource.local.ProfileDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,11 +36,4 @@ object AppModule {
     @Singleton
     @Provides
     fun provideProfileDao(db: ProfileDatabase) = db.profileDao() // The reason we can implement a Dao for the database
-
-    @Provides
-    @Singleton
-    fun provideLocalDataSource(profileDao: ProfileDao): LocalDataSource {
-        return LocalDataSource(profileDao)
-    }
-
 }

@@ -9,6 +9,8 @@ import com.moondroid.behealthy.data.datasource.remote.RemoteDataSourceImpl
 import com.moondroid.behealthy.data.api.ApiInterface
 import com.moondroid.behealthy.data.api.response.ResponseAdapterFactory
 import com.moondroid.behealthy.data.api.URLManager.BASE_URL
+import com.moondroid.behealthy.data.datasource.local.LocalDataSource
+import com.moondroid.behealthy.data.datasource.local.LocalDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -94,4 +96,12 @@ abstract class NetworkBindModule {
     @Binds
     @Singleton
     abstract fun bindRemoteDataSource(remoteDataSourceImpl: RemoteDataSourceImpl): RemoteDataSource
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class LocalBindModule {
+    @Binds
+    @Singleton
+    abstract fun bindLocalDataSource(localDataSourceImpl: LocalDataSourceImpl): LocalDataSource
 }

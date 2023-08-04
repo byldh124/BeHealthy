@@ -1,6 +1,11 @@
 package com.moondroid.behealthy.data.datasource.local
 
-import com.moondroid.behealthy.data.datasource.local.room.ProfileDao
+import com.moondroid.behealthy.data.model.entity.ProfileEntity
 
-class LocalDataSource constructor(private val profileDao: ProfileDao){
+interface LocalDataSource {
+    suspend fun deleteAllProfile()
+    suspend fun insertProfile(profile: ProfileEntity)
+    suspend fun getProfile(): List<ProfileEntity>
+    suspend fun deleteProfile(profile: ProfileEntity)
+    suspend fun isTutorial() : Boolean
 }

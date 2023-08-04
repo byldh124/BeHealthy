@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.moondroid.behealthy.view.dialog.OneButtonDialog
 import com.moondroid.behealthy.view.ui.home.HomeActivity
 
-open class BaseActivity(@LayoutRes layout: Int) : AppCompatActivity(layout) {
+open class BaseActivity : AppCompatActivity() {
 
     private var oneButtonDialog: OneButtonDialog? = null
     protected val mContext by lazy { this }

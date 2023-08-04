@@ -36,7 +36,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SignActivity : BaseActivity(R.layout.activity_sign) {
+class SignActivity : BaseActivity() {
     private val binding by viewBinding(ActivitySignBinding::inflate)
 
     @Inject

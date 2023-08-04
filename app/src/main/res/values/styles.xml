@@ -41,13 +41,26 @@
         <item name="android:textColor">@color/defaultText</item>
     </style>
 
+    <style name="Icon">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="IcExit" parent="Icon">
+        <item name="android:src">@drawable/ic_close</item>
+    </style>
+
+    <style name="IcBack" parent="Icon">
+        <item name="android:src">@drawable/ic_back</item>
+    </style>
+
     <style name="TextBottomNav" parent="Widget.Design.BottomNavigationView">
         <item name="android:fontFamily">@font/nanum_square_round_b</item>
         <item name="android:textSize">12sp</item>
     </style>
 
     <style name="Button">
-        <item name="android:textColor">@color/defaultText_white</item>
         <item name="android:fontFamily">@font/cafe24_surround</item>
         <item name="android:paddingTop">16dp</item>
         <item name="android:paddingBottom">16dp</item>
@@ -55,23 +68,31 @@
         <item name="android:paddingEnd">24dp</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="ButtonBlue01" parent="Button">
-        <item name="android:background">@drawable/bg_button_blue01</item>
+        <item name="android:background">@drawable/bg_round_button_blue01</item>
+        <item name="android:textColor">@color/defaultText_white</item>
     </style>
 
-    <style name="ConfirmButton">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">16dp</item>
-        <item name="android:paddingBottom">16dp</item>
-        <item name="android:fontFamily">@font/cafe24_surround</item>
+    <style name="CancelButton" parent="Button">
         <item name="android:textColor">@color/white_01</item>
-        <item name="android:gravity">center</item>
-        <item name="android:background">@color/blue_02</item>
-        <item name="android:textAlignment">center</item>
+        <item name="android:background">@drawable/bg_square_button_gray01</item>
+    </style>
+
+    <style name="ConfirmButton" parent="Button">
+        <item name="android:textColor">@color/white_01</item>
+        <item name="android:background">@drawable/bg_square_button_blue01</item>
+    </style>
+
+    <style name="DefaultText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/defaultText</item>
+        <item name="android:lineSpacingExtra">4dp</item>
     </style>
 
 </resources>

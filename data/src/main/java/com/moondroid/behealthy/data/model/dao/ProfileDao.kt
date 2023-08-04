@@ -1,4 +1,4 @@
-package com.moondroid.behealthy.data.datasource.local.room
+package com.moondroid.behealthy.data.model.dao
 
 import androidx.room.Dao
 import androidx.room.Delete

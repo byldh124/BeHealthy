@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="itemType"
+            type="Integer" />
+
+        <import type="com.moondroid.behealthy.common.ItemType" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            style="@style/Toolbar">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icBack"
+                style="@style/IcBack" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ToolbarTitle"
+                android:text="새로운 다짐" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar">
+
+            <FrameLayout
+                visible="@{itemType == ItemType.SMOKE}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <include layout="@layout/layout_item_add_smk" />
+            </FrameLayout>
+
+            <FrameLayout
+                visible="@{itemType == ItemType.DRINK}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <include layout="@layout/layout_item_add_drk" />
+            </FrameLayout>
+        </FrameLayout>
+
+
+    </RelativeLayout>
+</layout>

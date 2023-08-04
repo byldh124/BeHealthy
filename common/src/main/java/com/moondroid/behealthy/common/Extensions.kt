@@ -1,6 +1,7 @@
 package com.moondroid.behealthy.common
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
@@ -24,6 +25,12 @@ object Extensions {
         if (BuildConfig.DEBUG) {
             Log.e(TAG, "[${this.javaClass.simpleName}] $msg")
         }
+    }
+
+    fun Activity.exitApp() {
+        this.moveTaskToBack(true)
+        this.finish()
+        android.os.Process.killProcess(android.os.Process.myPid())
     }
 
     fun Throwable.logException() {

@@ -29,3 +29,8 @@ object UserType {
     const val KAKAO = 1
     const val GOOGLE = 2
 }
+
+object ItemType {
+    const val SMOKE = 1
+    const val DRINK = 2
+}

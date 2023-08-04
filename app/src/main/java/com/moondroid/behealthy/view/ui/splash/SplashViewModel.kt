@@ -7,20 +7,19 @@ import com.moondroid.behealthy.domain.model.status.onError
 import com.moondroid.behealthy.domain.model.status.onFail
 import com.moondroid.behealthy.domain.model.status.onSuccess
 import com.moondroid.behealthy.domain.usecase.application.AppVersionUseCase
-import com.moondroid.behealthy.domain.usecase.profile.ProfileUseCase
+import com.moondroid.behealthy.domain.usecase.profile.GetProfileUseCase
 import com.moondroid.behealthy.utils.MutableEventFlow
 import com.moondroid.behealthy.utils.asEventFlow
 import com.moondroid.behealthy.view.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val appVersionUseCase: AppVersionUseCase,
-    private val profileUseCase: ProfileUseCase,
+    private val getProfileUseCase: GetProfileUseCase,
 ) : BaseViewModel() {
     private val _eventFlow = MutableEventFlow<SplashEvent>()
     val eventFLow = _eventFlow.asEventFlow()
@@ -31,12 +30,12 @@ class SplashViewModel @Inject constructor(
         packageName: String,
     ) {
         viewModelScope.launch {
-            delay(2000)
+            delay(1500)
             appVersionUseCase(versionCode, versionName, packageName).collect { result ->
                 result.onSuccess {
-                    event(SplashEvent.Version(it.code))
+                    checkUserInfo()
                 }.onFail {
-                    //TODO Handle Api Error
+                    event(SplashEvent.Version(it))
                 }.onError {
                     it.logException()
                 }
@@ -44,9 +43,9 @@ class SplashViewModel @Inject constructor(
         }
     }
 
-    fun checkUserInfo() {
+    private fun checkUserInfo() {
         viewModelScope.launch {
-            profileUseCase().collect {
+            getProfileUseCase().collect {
                 it?.let {
                     event(SplashEvent.Home(it))
                 } ?: run {

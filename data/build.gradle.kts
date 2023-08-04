@@ -43,6 +43,9 @@ dependencies {
     //kapt -> ksp migration https://kotlinlang.org/docs/ksp-overview.html#supported-libraries
     kapt(libs.room.compiler)
 
+    //datastore
+    implementation(libs.androidx.datastore)
+
     //hilt
     // Hilt
     implementation(libs.hilt.android)

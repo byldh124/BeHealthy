@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/itemSelectFragment">
+
+    <fragment
+        android:id="@+id/itemSelectFragment"
+        android:name="com.moondroid.behealthy.view.ui.item.ItemSelectFragment"
+        android:label="ItemSelectFragment"
+        tools:layout="@layout/fragment_item_select" >
+        <action
+            android:id="@+id/toCountFragment"
+            app:destination="@id/itemCountFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/itemCountFragment"
+        android:name="com.moondroid.behealthy.view.ui.item.ItemCountFragment"
+        android:label="ItemCountFragment"
+        tools:layout="@layout/fragment_item_count">
+
+        <argument android:name="itemType"
+            app:argType="integer"/>
+    </fragment>
+</navigation>

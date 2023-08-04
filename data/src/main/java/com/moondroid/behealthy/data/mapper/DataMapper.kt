@@ -10,4 +10,5 @@ object DataMapper {
     fun BaseResponseDTO.toBaseResponse(): BaseResponse = BaseResponse(code, message)
     fun ProfileDTO.toProfileEntity() : ProfileEntity = ProfileEntity(id, name, thumb, type)
     fun ProfileEntity.toProfile() : Profile = Profile(id, name, thumb, type)
+    fun Profile.toProfileEntity() : ProfileEntity = ProfileEntity(id, name, thumb, type)
 }
