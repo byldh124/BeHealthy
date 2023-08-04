@@ -6,5 +6,5 @@ data class Item(
     val type: Int,
     val startDate: Long,
     val countOfWeek: Int,
-    val priceOfWeek: Long,
+    val costOfWeek: Long,
 )

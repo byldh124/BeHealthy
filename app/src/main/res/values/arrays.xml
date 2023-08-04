@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="smk_amount">
+        <item>반 갑</item>
+        <item>1 갑</item>
+        <item>2 갑</item>
+        <item>3 갑</item>
+        <item>4 갑</item>
+        <item>5 갑</item>
+    </string-array>
+
+    <string-array name="drk_amount">
+        <item>1 회</item>
+        <item>2 회</item>
+        <item>3 회</item>
+        <item>4 회</item>
+        <item>5 회</item>
+        <item>6 회</item>
+        <item>매 일</item>
+    </string-array>
+
+    <string-array name="drk_cost">
+        <item>10000원</item>
+        <item>20000원</item>
+        <item>30000원</item>
+        <item>40000원</item>
+        <item>50000원</item>
+        <item>60000원</item>
+        <item>70000원</item>
+        <item>80000원</item>
+        <item>90000원</item>
+        <item>10000원</item>
+    </string-array>
+
+</resources>

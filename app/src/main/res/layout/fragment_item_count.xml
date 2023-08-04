@@ -38,7 +38,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <include layout="@layout/layout_item_add_smk" />
+                <include
+                    android:id="@+id/smkLayout"
+                    layout="@layout/layout_item_add_smk" />
             </FrameLayout>
 
             <FrameLayout
@@ -46,7 +48,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <include layout="@layout/layout_item_add_drk" />
+                <include
+                    android:id="@+id/drkLayout"
+                    layout="@layout/layout_item_add_drk" />
             </FrameLayout>
         </FrameLayout>
 
