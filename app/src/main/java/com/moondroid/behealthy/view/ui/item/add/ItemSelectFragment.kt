@@ -1,11 +1,9 @@
-package com.moondroid.behealthy.view.ui.item
+package com.moondroid.behealthy.view.ui.item.add
 
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.moondroid.behealthy.R
-import com.moondroid.behealthy.common.Extensions.debug
-import com.moondroid.behealthy.common.Extensions.toast
 import com.moondroid.behealthy.common.ItemType
 import com.moondroid.behealthy.databinding.FragmentItemSelectBinding
 import com.moondroid.behealthy.utils.viewBinding
@@ -21,11 +19,11 @@ class ItemSelectFragment : BaseFragment(R.layout.fragment_item_select) {
                 (mContext as ItemAddActivity).finish()
             }
             smkWrapper.setOnClickListener {
-                findNavController().navigate(ItemSelectFragmentDirections.toCountFragment(ItemType.SMOKE))
+                findNavController().navigate(ItemSelectFragmentDirections.toItemSettingFragment(ItemType.SMOKE))
             }
 
             drkWrapper.setOnClickListener {
-                findNavController().navigate(ItemSelectFragmentDirections.toCountFragment(ItemType.DRINK))
+                findNavController().navigate(ItemSelectFragmentDirections.toItemSettingFragment(ItemType.DRINK))
             }
         }
     }

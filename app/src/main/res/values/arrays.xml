@@ -20,16 +20,16 @@
     </string-array>
 
     <string-array name="drk_cost">
-        <item>10000원</item>
-        <item>20000원</item>
-        <item>30000원</item>
-        <item>40000원</item>
-        <item>50000원</item>
-        <item>60000원</item>
-        <item>70000원</item>
-        <item>80000원</item>
-        <item>90000원</item>
-        <item>10000원</item>
+        <item>만원</item>
+        <item>2만원</item>
+        <item>3만원</item>
+        <item>4만원</item>
+        <item>5만원</item>
+        <item>6만원</item>
+        <item>7만원</item>
+        <item>8만원</item>
+        <item>9만원</item>
+        <item>10만원</item>
     </string-array>
 
 </resources>

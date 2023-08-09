@@ -5,13 +5,13 @@
 
     <!-- ActivityTheme white status bar-->
     <style name="AppTheme.WhiteHeader" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/white_01</item>
+        <item name="android:statusBarColor">@color/white01</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <!-- ActivityTheme default status bar-->
     <style name="AppTheme.BlueHeader" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/blue_03</item>
+        <item name="android:statusBarColor">@color/blue03</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
 
@@ -83,12 +83,12 @@
     </style>
 
     <style name="CancelButton" parent="Button">
-        <item name="android:textColor">@color/white_01</item>
+        <item name="android:textColor">@color/white01</item>
         <item name="android:background">@drawable/bg_square_button_gray01</item>
     </style>
 
     <style name="ConfirmButton" parent="Button">
-        <item name="android:textColor">@color/white_01</item>
+        <item name="android:textColor">@color/white01</item>
         <item name="android:background">@drawable/bg_square_button_blue01</item>
     </style>
 

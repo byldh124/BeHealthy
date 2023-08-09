@@ -82,4 +82,12 @@ class AppRepositoryImpl @Inject constructor(
             emit(localDataSource.isTutorial())
         }.flowOn(Dispatchers.IO)
     }
+
+    override suspend fun getSaying(): Flow<ApiResult<List<String>>> {
+        return flow {
+            remoteDataSource.getSaying().run {
+                emit(this)
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 }

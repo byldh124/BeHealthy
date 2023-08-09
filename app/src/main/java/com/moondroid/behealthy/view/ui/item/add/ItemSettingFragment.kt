@@ -1,0 +1,124 @@
+package com.moondroid.behealthy.view.ui.item.add
+
+import android.app.Activity
+import android.os.Bundle
+import android.view.View
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.moondroid.behealthy.BHApp
+import com.moondroid.behealthy.R
+import com.moondroid.behealthy.common.Extensions.debug
+import com.moondroid.behealthy.common.Extensions.logException
+import com.moondroid.behealthy.common.ItemType
+import com.moondroid.behealthy.databinding.FragmentItemSettingBinding
+import com.moondroid.behealthy.databinding.LayoutItemAddDrkBinding
+import com.moondroid.behealthy.databinding.LayoutItemAddSmkBinding
+import com.moondroid.behealthy.domain.model.status.onError
+import com.moondroid.behealthy.domain.model.status.onFail
+import com.moondroid.behealthy.domain.model.status.onSuccess
+import com.moondroid.behealthy.domain.usecase.item.AddItemUseCase
+import com.moondroid.behealthy.domain.usecase.item.GetItemsUseCase
+import com.moondroid.behealthy.utils.viewBinding
+import com.moondroid.behealthy.view.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@AndroidEntryPoint
+class ItemSettingFragment : BaseFragment(R.layout.fragment_item_setting) {
+    private val binding by viewBinding(FragmentItemSettingBinding::bind)
+
+    private var _smkBinding: LayoutItemAddSmkBinding? = null
+    private val smkBinding get() = _smkBinding!!
+
+    private var _drkBinding: LayoutItemAddDrkBinding? = null
+    private val drkBinding get() = _drkBinding!!
+
+    private val args by navArgs<ItemSettingFragmentArgs>()
+    private val itemType: Int by lazy { args.itemType }
+
+    @Inject
+    lateinit var addItemUseCase: AddItemUseCase
+
+    @Inject
+    lateinit var getItemUseCase: GetItemsUseCase
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.itemType = itemType
+
+        _smkBinding = LayoutItemAddSmkBinding.bind(binding.smkLayout.root)
+        _drkBinding = LayoutItemAddDrkBinding.bind(binding.drkLayout.root)
+
+        initView()
+    }
+
+    private fun initView() {
+        binding.icBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.btnDone.setOnClickListener {
+            addItem()
+        }
+    }
+
+    private fun addItem() {
+        val amount: Float = when (itemType) {
+            ItemType.SMOKE -> getSmkAmount()
+            ItemType.DRINK -> getDrkAmount()
+            else -> throw IllegalStateException()
+        }
+
+        val cost: Long = when (itemType) {
+            ItemType.SMOKE -> 4500
+            ItemType.DRINK -> getDrkCost()
+            else -> throw IllegalStateException()
+        }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            getItemUseCase(BHApp.profile.id).collect {itemResult ->
+                itemResult.onSuccess {list ->
+                    addItemUseCase.addItem(BHApp.profile.id, itemType, System.currentTimeMillis(), amount, cost, ((list.size + 1) * 17) % 29)
+                        .collect { result ->
+                            result.onSuccess {
+                                (mContext as ItemAddActivity).run {
+                                    setResult(Activity.RESULT_OK)
+                                    showMessage("새로운 아이템이 추가됐습니다.", ::finish)
+                                }
+                            }.onError {
+                                it.logException()
+                            }.onFail {
+                                debug("FAIL")
+                            }
+                        }
+                }
+            }
+        }
+    }
+
+    private fun getSmkAmount(): Float {
+        val position = smkBinding.amountSpinner.selectedItemPosition
+        return if (position == 0) 0.5f else position.toFloat()
+    }
+
+    private fun getDrkAmount(): Float {
+        val position = drkBinding.amountSpinner.selectedItemPosition
+        return (position + 1).toFloat()
+    }
+
+    private fun getDrkCost(): Long {
+        val position = drkBinding.costSpinner.selectedItemPosition
+        return (position + 1) * 10000L
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _smkBinding = null
+        _drkBinding = null
+    }
+}

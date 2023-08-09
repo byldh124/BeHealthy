@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/itemSelectFragment"
-        android:name="com.moondroid.behealthy.view.ui.item.ItemSelectFragment"
+        android:name="com.moondroid.behealthy.view.ui.item.add.ItemSelectFragment"
         android:label="ItemSelectFragment"
         tools:layout="@layout/fragment_item_select" >
         <action
-            android:id="@+id/toCountFragment"
-            app:destination="@id/itemCountFragment"/>
+            android:id="@+id/toItemSettingFragment"
+            app:destination="@id/itemSettingFragment"/>
     </fragment>
 
     <fragment
-        android:id="@+id/itemCountFragment"
-        android:name="com.moondroid.behealthy.view.ui.item.ItemCountFragment"
-        android:label="ItemCountFragment"
-        tools:layout="@layout/fragment_item_count">
+        android:id="@+id/itemSettingFragment"
+        android:name="com.moondroid.behealthy.view.ui.item.add.ItemSettingFragment"
+        android:label="ItemSettingFragment"
+        tools:layout="@layout/fragment_item_setting">
 
         <argument android:name="itemType"
             app:argType="integer"/>

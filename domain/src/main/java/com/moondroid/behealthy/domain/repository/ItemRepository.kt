@@ -7,5 +7,13 @@ import kotlinx.coroutines.flow.Flow
 
 interface ItemRepository {
     suspend fun getItems(id: String): Flow<ApiResult<List<Item>>>
-    suspend fun addItem(): Flow<ApiResult<BaseResponse>>
+
+    suspend fun addItem(
+        id: String,
+        type: Int,
+        startDate: Long,
+        amount: Float,
+        cost: Long,
+        boxColor: Int
+    ): Flow<ApiResult<BaseResponse>>
 }

@@ -1,6 +1,5 @@
 package com.moondroid.behealthy.data.api.response
 
-import com.moondroid.behealthy.domain.model.status.ApiResult
 import retrofit2.Call
 import retrofit2.CallAdapter
 import java.lang.reflect.Type

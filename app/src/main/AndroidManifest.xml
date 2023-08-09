@@ -41,7 +41,7 @@
             android:theme="@style/AppTheme.WhiteHeader" />
 
         <activity
-            android:name=".view.ui.item.ItemAddActivity"
+            android:name=".view.ui.item.add.ItemAddActivity"
             android:theme="@style/AppTheme.WhiteHeader" />
 
         <activity

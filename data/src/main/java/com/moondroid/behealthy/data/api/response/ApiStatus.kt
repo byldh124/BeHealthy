@@ -1,5 +1,7 @@
 package com.moondroid.behealthy.data.api.response
 
+import com.moondroid.behealthy.common.Extensions.debug
+
 sealed class ApiStatus<out T> {
     data class Success<out T>(val response: T) : ApiStatus<T>()
     data class Error<T>(val throwable: Throwable) : ApiStatus<T>()

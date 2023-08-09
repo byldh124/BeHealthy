@@ -1,12 +1,14 @@
 package com.moondroid.behealthy.data.datasource.remote
 
 import com.moondroid.behealthy.common.ResponseCode
-import com.moondroid.behealthy.data.mapper.DataMapper.toProfileEntity
-import com.moondroid.behealthy.data.model.dto.BaseResponseDTO
-import com.moondroid.behealthy.data.model.entity.ProfileEntity
-import com.moondroid.behealthy.data.model.request.SignRequest
 import com.moondroid.behealthy.data.api.ApiInterface
 import com.moondroid.behealthy.data.api.response.ApiStatus
+import com.moondroid.behealthy.data.mapper.DataMapper.toProfileEntity
+import com.moondroid.behealthy.data.model.dto.BaseResponseDTO
+import com.moondroid.behealthy.data.model.dto.ItemDTO
+import com.moondroid.behealthy.data.model.entity.ProfileEntity
+import com.moondroid.behealthy.data.model.request.AddItemRequest
+import com.moondroid.behealthy.data.model.request.SignRequest
 import com.moondroid.behealthy.data.model.request.UpdateTokenRequest
 import com.moondroid.behealthy.domain.model.status.ApiResult
 import javax.inject.Inject
@@ -64,7 +66,54 @@ class RemoteDataSourceImpl @Inject constructor(private val api: ApiInterface) : 
                     }
                 }
             }
+
             is ApiStatus.Error -> ApiResult.Error(result.throwable)
+        }
+    }
+
+    override suspend fun addItem(
+        id: String,
+        type: Int,
+        startDate: Long,
+        amount: Float,
+        cost: Long,
+        boxColor: Int
+    ): ApiResult<BaseResponseDTO> {
+        return when (val response = api.addItem(AddItemRequest(id, type, startDate, amount, cost, boxColor))) {
+            is ApiStatus.Success -> {
+                response.response.run {
+                    if (code == ResponseCode.SUCCESS) ApiResult.Success(response.response)
+                    else ApiResult.Fail(code)
+                }
+            }
+
+            is ApiStatus.Error -> ApiResult.Error(response.throwable)
+        }
+    }
+
+    override suspend fun getItems(id: String): ApiResult<List<ItemDTO>> {
+        return when (val response = api.getItems(id)) {
+            is ApiStatus.Success -> {
+                response.response.run {
+                    if (code == ResponseCode.SUCCESS) ApiResult.Success(response.response.result)
+                    else ApiResult.Fail(code)
+                }
+            }
+
+            is ApiStatus.Error -> ApiResult.Error(response.throwable)
+        }
+    }
+
+    override suspend fun getSaying(): ApiResult<List<String>> {
+        return when (val response = api.getSaying()) {
+            is ApiStatus.Success -> {
+                response.response.run {
+                    if (code == ResponseCode.SUCCESS) ApiResult.Success(response.response.result)
+                    else ApiResult.Fail(code)
+                }
+            }
+
+            is ApiStatus.Error -> ApiResult.Error(response.throwable)
         }
     }
 }

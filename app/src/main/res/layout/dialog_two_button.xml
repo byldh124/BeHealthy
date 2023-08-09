@@ -9,7 +9,7 @@
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="@color/white_01">
+        android:background="@color/white01">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvMessage"

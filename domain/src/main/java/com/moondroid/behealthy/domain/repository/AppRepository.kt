@@ -16,4 +16,5 @@ interface AppRepository {
     suspend fun getProfile(): Flow<Profile?>
     suspend fun updateToken(id: String, token: String): Flow<ApiResult<BaseResponse>>
     suspend fun isTutorial(): Flow<Boolean>
+    suspend fun getSaying(): Flow<ApiResult<List<String>>>
 }

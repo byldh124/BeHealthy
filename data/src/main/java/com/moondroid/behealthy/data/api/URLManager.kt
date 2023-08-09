@@ -7,4 +7,9 @@ object URLManager {
     const val SIGN = "user/sign.php"
     const val UPDATE_TOKEN = "user/updateToken.php"
 
+    const val ADD_ITEM = "item/addItem.php"
+    const val GET_ITEMS = "item/getItems.php"
+
+    const val GET_SAYING = "common/getSaying.php"
+
 }

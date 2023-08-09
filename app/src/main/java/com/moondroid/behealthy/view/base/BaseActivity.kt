@@ -35,11 +35,11 @@ open class BaseActivity : AppCompatActivity() {
         oneButtonDialog?.exit()
     }
 
-    protected fun showMessage(@StringRes res: Int, onClick: () -> Unit = {}) {
+    fun showMessage(@StringRes res: Int, onClick: () -> Unit = {}) {
         showMessage(getString(res), onClick)
     }
 
-    protected fun showMessage(message: String, onClick: () -> Unit = {}) {
+    fun showMessage(message: String, onClick: () -> Unit = {}) {
         oneButtonDialog?.let {
             it.message = message
             it.onClick = onClick

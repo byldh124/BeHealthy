@@ -36,6 +36,7 @@
             <FrameLayout
                 visible="@{itemType == ItemType.SMOKE}"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="match_parent">
 
                 <include
@@ -46,6 +47,7 @@
             <FrameLayout
                 visible="@{itemType == ItemType.DRINK}"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="match_parent">
 
                 <include
@@ -54,6 +56,15 @@
             </FrameLayout>
         </FrameLayout>
 
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnDone"
+            style="@style/ButtonBlue01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:text="설정 완료"/>
 
     </RelativeLayout>
 </layout>

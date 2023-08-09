@@ -2,15 +2,15 @@
 
 package com.moondroid.behealthy.data.di
 
-import android.util.Log
 import com.google.gson.GsonBuilder
-import com.moondroid.behealthy.data.datasource.remote.RemoteDataSource
-import com.moondroid.behealthy.data.datasource.remote.RemoteDataSourceImpl
+import com.moondroid.behealthy.common.Extensions.debug
 import com.moondroid.behealthy.data.api.ApiInterface
-import com.moondroid.behealthy.data.api.response.ResponseAdapterFactory
 import com.moondroid.behealthy.data.api.URLManager.BASE_URL
+import com.moondroid.behealthy.data.api.response.ResponseAdapterFactory
 import com.moondroid.behealthy.data.datasource.local.LocalDataSource
 import com.moondroid.behealthy.data.datasource.local.LocalDataSourceImpl
+import com.moondroid.behealthy.data.datasource.remote.RemoteDataSource
+import com.moondroid.behealthy.data.datasource.remote.RemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -37,7 +37,7 @@ object NetworkModule {
             val requestBuilder = original.newBuilder()
             requestBuilder.header("Content-Type", "application/json")
             val request = requestBuilder.method(original.method, original.body).build()
-            Log.d("TAG", request.toString())
+            debug(request.toString())
             return@addInterceptor it.proceed(request)
         }.build()
     }

@@ -9,10 +9,16 @@ object ResponseCode {
     const val INACTIVE = 2004
 }
 
+object IntentParam {
+    const val ITEM_SIZE = "ITEM_SIZE"
+}
+
 object ApiParam {
     const val VERSION_CODE = "versionCode"
     const val VERSION_NAME = "versionName"
     const val PACKAGE_NAME = "packageName"
+
+    const val ID = "id"
 }
 
 object RoomParam {
@@ -33,4 +39,11 @@ object UserType {
 object ItemType {
     const val SMOKE = 1
     const val DRINK = 2
+}
+
+object TimeHelper {
+    const val SECOND = 1000L
+    const val MINUTE = 60 * SECOND
+    const val HOUR = 60 * MINUTE
+    const val DAY = 24 * HOUR
 }

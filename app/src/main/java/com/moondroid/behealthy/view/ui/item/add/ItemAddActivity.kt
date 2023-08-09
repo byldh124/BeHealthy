@@ -1,4 +1,4 @@
-package com.moondroid.behealthy.view.ui.item
+package com.moondroid.behealthy.view.ui.item.add
 
 import com.moondroid.behealthy.databinding.ActivityItemAddBinding
 import com.moondroid.behealthy.utils.viewBinding
@@ -11,4 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ItemAddActivity : BaseActivity() {
     private val binding by viewBinding(ActivityItemAddBinding::inflate)
+
+
 }
