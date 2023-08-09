@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import com.moondroid.behealthy.domain.model.Item
 import com.moondroid.behealthy.view.dialog.OneButtonDialog
 import com.moondroid.behealthy.view.ui.home.HomeActivity
 
@@ -55,4 +56,12 @@ open class BaseActivity : AppCompatActivity() {
         startActivity(Intent(mContext, HomeActivity::class.java))
         finishAffinity()
     }
+}
+
+fun List<Item>.containType(vararg itemType: Int): Boolean {
+    var temp = 0
+    forEach {
+        if (itemType.contains(it.type)) temp++
+    }
+    return temp == itemType.size
 }

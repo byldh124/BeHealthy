@@ -25,6 +25,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.random.Random
 
 @AndroidEntryPoint
 class ItemSettingFragment : BaseFragment(R.layout.fragment_item_setting) {
@@ -41,10 +42,6 @@ class ItemSettingFragment : BaseFragment(R.layout.fragment_item_setting) {
 
     @Inject
     lateinit var addItemUseCase: AddItemUseCase
-
-    @Inject
-    lateinit var getItemUseCase: GetItemsUseCase
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -81,23 +78,22 @@ class ItemSettingFragment : BaseFragment(R.layout.fragment_item_setting) {
         }
 
         CoroutineScope(Dispatchers.Main).launch {
-            getItemUseCase(BHApp.profile.id).collect {itemResult ->
-                itemResult.onSuccess {list ->
-                    addItemUseCase.addItem(BHApp.profile.id, itemType, System.currentTimeMillis(), amount, cost, ((list.size + 1) * 17) % 29)
-                        .collect { result ->
-                            result.onSuccess {
-                                (mContext as ItemAddActivity).run {
-                                    setResult(Activity.RESULT_OK)
-                                    showMessage("새로운 아이템이 추가됐습니다.", ::finish)
-                                }
-                            }.onError {
-                                it.logException()
-                            }.onFail {
-                                debug("FAIL")
-                            }
-                        }
-                }
+            val boxColor = (mContext as ItemAddActivity).run {
+                if (list.isEmpty()) Random.nextInt(29) + 1
+                else (list[list.lastIndex].boxColor + 1) % 29 + 1
             }
+            addItemUseCase
+                .addItem(BHApp.profile.id, itemType, System.currentTimeMillis(), amount, cost, boxColor)
+                .collect { result ->
+                    result.onSuccess {
+                        (mContext as ItemAddActivity).run {
+                            setResult(Activity.RESULT_OK)
+                            showMessage("새로운 아이템이 추가됐습니다.", ::finish)
+                        }
+                    }.onError {
+                        it.logException()
+                    }
+                }
         }
     }
 

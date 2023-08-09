@@ -17,24 +17,18 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <RelativeLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar">
-
-        <Space
-            android:id="@+id/center"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_centerInParent="true" />
+        android:layout_below="@id/toolbar"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/smkWrapper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_marginEnd="16dp"
-            android:layout_toStartOf="@id/center"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="8dp">
@@ -56,9 +50,7 @@
             android:id="@+id/drkWrapper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
-            android:layout_toEndOf="@id/center"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="8dp">
@@ -77,6 +69,6 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-    </RelativeLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </RelativeLayout>

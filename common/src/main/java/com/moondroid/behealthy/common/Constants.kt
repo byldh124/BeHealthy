@@ -10,7 +10,7 @@ object ResponseCode {
 }
 
 object IntentParam {
-    const val ITEM_SIZE = "ITEM_SIZE"
+    const val ITEMS = "ITEMS"
 }
 
 object ApiParam {

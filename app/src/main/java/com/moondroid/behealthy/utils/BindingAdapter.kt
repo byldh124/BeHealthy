@@ -2,9 +2,11 @@ package com.moondroid.behealthy.utils
 
 import android.annotation.SuppressLint
 import android.view.View
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.google.android.material.card.MaterialCardView
+import com.moondroid.behealthy.R
 import com.moondroid.behealthy.common.Extensions.logException
 
 object BindingAdapter {
@@ -29,5 +31,15 @@ object BindingAdapter {
         } catch (e: Exception) {
             e.logException()
         }
+    }
+
+    @BindingAdapter("boxTextColor")
+    @JvmStatic
+    fun TextView.setBoxTextColor(index: Int ) {
+        val textColor = when (index) {
+            1, 2, 4, 5, 8, 12, 16, 17, 18 -> ContextCompat.getColor(context, R.color.defaultText)
+            else -> ContextCompat.getColor(context, R.color.defaultText_white)
+        }
+        setTextColor(textColor)
     }
 }

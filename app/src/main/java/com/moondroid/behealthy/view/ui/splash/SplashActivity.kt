@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import com.moondroid.behealthy.BHApp
 import com.moondroid.behealthy.BuildConfig
 import com.moondroid.behealthy.R
@@ -21,6 +22,7 @@ import com.moondroid.behealthy.view.ui.sign.SignActivity
 import com.moondroid.behealthy.view.ui.splash.SplashViewModel.SplashEvent
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlin.random.Random
 
 @SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
@@ -31,6 +33,7 @@ class SplashActivity : BaseActivity() {
     @Inject
     lateinit var checkAppVersion: AppVersionUseCase
 
+    @SuppressLint("DiscouragedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         repeatOnStarted {
@@ -38,9 +41,12 @@ class SplashActivity : BaseActivity() {
                 handleEvent(it)
             }
         }
+        val resId =
+            resources.getIdentifier(String.format("box%02d", (Random.nextInt(29) + 1)), "color", packageName)
+        binding.logo.setTextColor(ContextCompat.getColor(this, resId))
 
         val anim = AnimationUtils.loadAnimation(this, R.anim.splash_logo)
-        binding.lottie.startAnimation(anim)
+        binding.logo.startAnimation(anim)
 
         viewModel.checkAppVersion(
             BuildConfig.VERSION_CODE,

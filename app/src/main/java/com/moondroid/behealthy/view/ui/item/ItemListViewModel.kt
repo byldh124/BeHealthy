@@ -30,7 +30,7 @@ class ItemListViewModel @Inject constructor(
         getSaying()
     }
 
-    fun getSaying() {
+    private fun getSaying() {
         viewModelScope.launch {
             getSayingUseCase().collect { result ->
                 result.onSuccess {
