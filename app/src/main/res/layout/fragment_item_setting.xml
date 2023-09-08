@@ -5,7 +5,7 @@
 
         <variable
             name="itemType"
-            type="Integer" />
+            type="ItemType" />
 
         <import type="com.moondroid.behealthy.common.ItemType" />
     </data>

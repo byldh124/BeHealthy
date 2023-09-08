@@ -153,9 +153,9 @@ class SignActivity : BaseActivity() {
     }
 
 
-    private fun sign(id: String = "", name: String = "", thumb: String = "", userType: Int) {
+    private fun sign(id: String = "", name: String = "", thumb: String = "", userType: UserType) {
         CoroutineScope(Dispatchers.Main).launch {
-            signUseCase(id, name, thumb, userType).collect { result ->
+            signUseCase(id, name, thumb, userType.value).collect { result ->
                 result.onSuccess {
                     BHApp.profile = it
                     getMsgToken(it.id)

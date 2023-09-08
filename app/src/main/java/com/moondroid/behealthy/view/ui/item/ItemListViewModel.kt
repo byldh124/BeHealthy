@@ -45,9 +45,11 @@ class ItemListViewModel @Inject constructor(
     }
 
     fun getItems() {
+        debug("getItems()")
         viewModelScope.launch {
             getItemsUseCase(BHApp.profile.id).collect { result ->
                 result.onSuccess {
+                    debug("getItems() - onSuccess() $it")
                     _eventFlow.emit(ItemListEvent.UpdateItem(it))
                 }.onFail {
                     debug("getItems() - fail[$it]")

@@ -1,12 +1,9 @@
 package com.moondroid.behealthy.view.ui.item
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,26 +11,32 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_DRAGGING
 import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_IDLE
-import com.google.gson.Gson
 import com.moondroid.behealthy.R
 import com.moondroid.behealthy.common.Extensions.debug
+import com.moondroid.behealthy.common.Extensions.logException
 import com.moondroid.behealthy.common.Extensions.repeatOnStarted
-import com.moondroid.behealthy.common.IntentParam
 import com.moondroid.behealthy.common.ItemType
 import com.moondroid.behealthy.common.TimeHelper
 import com.moondroid.behealthy.databinding.FragmentItemListBinding
 import com.moondroid.behealthy.domain.model.Item
+import com.moondroid.behealthy.domain.model.status.onError
+import com.moondroid.behealthy.domain.model.status.onFail
+import com.moondroid.behealthy.domain.model.status.onSuccess
+import com.moondroid.behealthy.domain.usecase.item.ChangeBoxColorUseCase
 import com.moondroid.behealthy.utils.BindingAdapter.visible
 import com.moondroid.behealthy.utils.viewBinding
 import com.moondroid.behealthy.view.base.BaseFragment
 import com.moondroid.behealthy.view.base.containType
+import com.moondroid.behealthy.view.ui.home.HomeActivity
 import com.moondroid.behealthy.view.ui.item.ItemListViewModel.ItemListEvent
-import com.moondroid.behealthy.view.ui.item.add.ItemAddActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.Timer
 import java.util.TimerTask
+import javax.inject.Inject
+import kotlin.random.Random
 
 @AndroidEntryPoint
 class ItemListFragment : BaseFragment(R.layout.fragment_item_list) {
@@ -45,16 +48,29 @@ class ItemListFragment : BaseFragment(R.layout.fragment_item_list) {
 
     private val bannerAdapter = ItemBannerAdapter()
 
+    @Inject
+    lateinit var changeBoxColorUseCase: ChangeBoxColorUseCase
+
     private val itemListAdapter = ItemListAdapter {
-
+        CoroutineScope(Dispatchers.Main).launch {
+            changeBoxColorUseCase(it.index, Random.nextInt(29) + 1).collect {result ->
+                result.onSuccess {
+                    debug("onSuccess")
+                    viewModel.getItems()
+                }.onError {
+                    it.logException()
+                }.onFail {
+                    debug("code")
+                }
+            }
+        }
     }
 
-    private val getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        if (it.resultCode == Activity.RESULT_OK) viewModel.getItems()
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        debug("onCreate()")
         repeatOnStarted {
             viewModel.eventFlow.collect { handleEvent(it) }
         }
@@ -62,6 +78,7 @@ class ItemListFragment : BaseFragment(R.layout.fragment_item_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        debug("onViewCreated()")
         viewModel.getItems()
         initView()
     }
@@ -73,9 +90,10 @@ class ItemListFragment : BaseFragment(R.layout.fragment_item_list) {
         }
 
         binding.btnAdd.setOnClickListener {
-            getResult.launch(Intent(mContext, ItemAddActivity::class.java).apply {
-                putExtra(IntentParam.ITEMS, Gson().toJson(tempList))
-            })
+            (mContext as HomeActivity).toAddItem(tempList) {
+                debug("toAddItems Callback")
+                viewModel.getItems()
+            }
         }
 
         binding.banner.adapter = bannerAdapter
@@ -145,6 +163,11 @@ class ItemListFragment : BaseFragment(R.layout.fragment_item_list) {
 
             is ItemListEvent.Saying -> bannerAdapter.update(event.urls)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        debug("onDestroy()")
     }
 
     companion object {

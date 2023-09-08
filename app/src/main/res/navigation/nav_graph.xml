@@ -22,6 +22,6 @@
         tools:layout="@layout/fragment_item_setting">
 
         <argument android:name="itemType"
-            app:argType="integer"/>
+            app:argType="com.moondroid.behealthy.common.ItemType"/>
     </fragment>
 </navigation>

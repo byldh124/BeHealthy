@@ -15,25 +15,16 @@ sealed class ApiResult<out T> {
 }
 
 inline fun <T : Any> ApiResult<T>.onSuccess(action: (T) -> Unit): ApiResult<T> {
-    if (this is ApiResult.Success) {
-        debug("RESPONSE : $response")
-        action(response)
-    }
+    if (this is ApiResult.Success) action(response)
     return this
 }
 
 inline fun <T : Any> ApiResult<T>.onFail(action: (Int) -> Unit): ApiResult<T> {
-    if (this is ApiResult.Fail) {
-        debug("FAIL : $code")
-        action(code)
-    }
+    if (this is ApiResult.Fail) action(code)
     return this
 }
 
 inline fun <T : Any> ApiResult<T>.onError(action: (Throwable) -> Unit): ApiResult<T> {
-    if (this is ApiResult.Error) {
-        debug("ERROR: ${throwable.logException()}")
-        action(throwable)
-    }
+    if (this is ApiResult.Error) action(throwable)
     return this
 }

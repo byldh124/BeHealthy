@@ -26,6 +26,9 @@ class ItemListAdapter(private val onClick: (Item) -> Unit) : Adapter<ItemListAda
     ) : ViewHolder(binding.root) {
         fun bind(item: Item) {
             binding.item = item
+            binding.root.setOnClickListener {
+                onClick(item)
+            }
             binding.executePendingBindings()
         }
     }

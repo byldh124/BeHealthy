@@ -19,6 +19,8 @@ object ApiParam {
     const val PACKAGE_NAME = "packageName"
 
     const val ID = "id"
+    const val INDEX = "index"
+    const val BOX_COLOR = "boxColor"
 }
 
 object RoomParam {
@@ -30,15 +32,12 @@ object RoomParam {
     const val PROFILE_TYPE = "PROFILE_TYPE"
 }
 
-object UserType {
-    const val GUEST = 0
-    const val KAKAO = 1
-    const val GOOGLE = 2
+enum class UserType(val value: Int) {
+    GUEST(0), KAKAO(1), GOOGLE(2)
 }
 
-object ItemType {
-    const val SMOKE = 1
-    const val DRINK = 2
+enum class ItemType(val value: Int) {
+    SMOKE(1), DRINK(2)
 }
 
 object TimeHelper {

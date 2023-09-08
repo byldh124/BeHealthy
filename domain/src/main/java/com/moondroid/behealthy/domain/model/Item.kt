@@ -10,7 +10,7 @@ import java.util.Date
 data class Item(
     val index: Int,
     val id: String,
-    val type: Int,
+    val type: ItemType,
     val startDate: Long,
     val amount: Float,
     val cost: Long,

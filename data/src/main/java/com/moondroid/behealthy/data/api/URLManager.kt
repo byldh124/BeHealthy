@@ -12,4 +12,6 @@ object URLManager {
 
     const val GET_SAYING = "common/getSaying.php"
 
+    const val CHANGE_BOX = "item/changeBoxColor.php"
+
 }

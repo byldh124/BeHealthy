@@ -1,9 +1,9 @@
 package com.moondroid.behealthy.data.repository
 
+import com.moondroid.behealthy.common.ItemType
 import com.moondroid.behealthy.data.datasource.remote.RemoteDataSource
-import com.moondroid.behealthy.data.mapper.DataMapper.toBaseResponse
 import com.moondroid.behealthy.data.mapper.DataMapper.toItem
-import com.moondroid.behealthy.domain.model.BaseResponse
+import com.moondroid.behealthy.data.model.request.AddItemRequest
 import com.moondroid.behealthy.domain.model.Item
 import com.moondroid.behealthy.domain.model.status.ApiResult
 import com.moondroid.behealthy.domain.repository.ItemRepository
@@ -29,20 +29,16 @@ class ItemRepositoryImpl @Inject constructor(private val remoteDataSource: Remot
 
     override suspend fun addItem(
         id: String,
-        type: Int,
+        type: ItemType,
         startDate: Long,
         amount: Float,
         cost: Long,
-        boxColor: Int
-    ): Flow<ApiResult<BaseResponse>> {
-        return flow<ApiResult<BaseResponse>> {
-            remoteDataSource.addItem(id, type, startDate, amount, cost, boxColor).run {
-                when (this) {
-                    is ApiResult.Success -> emit(ApiResult.Success(response.toBaseResponse()))
-                    is ApiResult.Fail -> emit(ApiResult.Fail(code))
-                    is ApiResult.Error -> emit(ApiResult.Error(throwable))
-                }
-            }
-        }.flowOn(Dispatchers.IO)
-    }
+        boxColor: Int,
+    ): Flow<ApiResult<Unit>> = flow {
+        emit(remoteDataSource.addItem(AddItemRequest(id, type, startDate, amount, cost, boxColor)))
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun changeBoxColor(index: Int, boxColor: Int): Flow<ApiResult<Unit>> = flow {
+        emit(remoteDataSource.changeBoxColor(index, boxColor))
+    }.flowOn(Dispatchers.IO)
 }

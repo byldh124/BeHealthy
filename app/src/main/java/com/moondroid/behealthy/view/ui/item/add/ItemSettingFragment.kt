@@ -7,17 +7,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.moondroid.behealthy.BHApp
 import com.moondroid.behealthy.R
-import com.moondroid.behealthy.common.Extensions.debug
 import com.moondroid.behealthy.common.Extensions.logException
 import com.moondroid.behealthy.common.ItemType
 import com.moondroid.behealthy.databinding.FragmentItemSettingBinding
 import com.moondroid.behealthy.databinding.LayoutItemAddDrkBinding
 import com.moondroid.behealthy.databinding.LayoutItemAddSmkBinding
 import com.moondroid.behealthy.domain.model.status.onError
-import com.moondroid.behealthy.domain.model.status.onFail
 import com.moondroid.behealthy.domain.model.status.onSuccess
 import com.moondroid.behealthy.domain.usecase.item.AddItemUseCase
-import com.moondroid.behealthy.domain.usecase.item.GetItemsUseCase
 import com.moondroid.behealthy.utils.viewBinding
 import com.moondroid.behealthy.view.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,7 +35,7 @@ class ItemSettingFragment : BaseFragment(R.layout.fragment_item_setting) {
     private val drkBinding get() = _drkBinding!!
 
     private val args by navArgs<ItemSettingFragmentArgs>()
-    private val itemType: Int by lazy { args.itemType }
+    private val itemType by lazy { args.itemType }
 
     @Inject
     lateinit var addItemUseCase: AddItemUseCase
