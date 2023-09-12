@@ -3,7 +3,7 @@ package com.moondroid.legacy
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import com.kakao.sdk.common.KakaoSdk
-import com.moondroid.behelthy.domain.model.Profile
+import com.moondroid.legacy.domain.model.Profile
 import com.moondroid.legacy.utils.NetworkConnection
 import com.moondroid.legacy.utils.firebase.FBAnalyze
 import dagger.hilt.android.HiltAndroidApp

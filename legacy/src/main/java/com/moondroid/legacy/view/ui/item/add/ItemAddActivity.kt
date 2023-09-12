@@ -3,8 +3,8 @@ package com.moondroid.legacy.view.ui.item.add
 import android.os.Bundle
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.moondroid.behelthy.common.IntentParam
-import com.moondroid.behelthy.domain.model.Item
+import com.moondroid.legacy.common.IntentParam
+import com.moondroid.legacy.domain.model.Item
 import com.moondroid.legacy.databinding.ActivityItemAddBinding
 import com.moondroid.legacy.utils.viewBinding
 import com.moondroid.legacy.view.base.BaseActivity

@@ -23,6 +23,6 @@
 
         <argument
             android:name="itemType"
-            app:argType="com.moondroid.behelthy.common.ItemType" />
+            app:argType="com.moondroid.legacy.common.ItemType" />
     </fragment>
 </navigation>

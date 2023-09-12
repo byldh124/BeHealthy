@@ -3,7 +3,7 @@ package com.moondroid.legacy.view.ui.item.add
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
-import com.moondroid.behelthy.common.ItemType
+import com.moondroid.legacy.common.ItemType
 import com.moondroid.legacy.R
 import com.moondroid.legacy.databinding.FragmentItemSelectBinding
 import com.moondroid.legacy.utils.BindingAdapter.visible

@@ -6,8 +6,8 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import com.moondroid.behelthy.common.ItemType
-import com.moondroid.behelthy.domain.model.Item
+import com.moondroid.legacy.common.ItemType
+import com.moondroid.legacy.domain.model.Item
 import com.moondroid.legacy.view.dialog.OneButtonDialog
 import com.moondroid.legacy.view.ui.home.HomeActivity
 

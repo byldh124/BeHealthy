@@ -1,13 +1,13 @@
 package com.moondroid.legacy.view.ui.splash
 
 import androidx.lifecycle.viewModelScope
-import com.moondroid.behelthy.common.Extensions.logException
-import com.moondroid.behelthy.domain.model.Profile
-import com.moondroid.behelthy.domain.model.status.onError
-import com.moondroid.behelthy.domain.model.status.onFail
-import com.moondroid.behelthy.domain.model.status.onSuccess
-import com.moondroid.behelthy.domain.usecase.application.AppVersionUseCase
-import com.moondroid.behelthy.domain.usecase.profile.GetProfileUseCase
+import com.moondroid.legacy.common.Extensions.logException
+import com.moondroid.legacy.domain.model.Profile
+import com.moondroid.legacy.domain.model.status.onError
+import com.moondroid.legacy.domain.model.status.onFail
+import com.moondroid.legacy.domain.model.status.onSuccess
+import com.moondroid.legacy.domain.usecase.application.AppVersionUseCase
+import com.moondroid.legacy.domain.usecase.profile.GetProfileUseCase
 import com.moondroid.legacy.utils.MutableEventFlow
 import com.moondroid.legacy.utils.asEventFlow
 import com.moondroid.legacy.view.base.BaseViewModel

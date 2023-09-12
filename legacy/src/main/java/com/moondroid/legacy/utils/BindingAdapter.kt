@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.google.android.material.card.MaterialCardView
 import com.moondroid.legacy.R
-import com.moondroid.behelthy.common.Extensions.logException
+import com.moondroid.legacy.common.Extensions.logException
 
 object BindingAdapter {
     @BindingAdapter("visible")

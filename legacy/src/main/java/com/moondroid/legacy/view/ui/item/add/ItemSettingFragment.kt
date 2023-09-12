@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.moondroid.behelthy.common.Extensions.logException
-import com.moondroid.behelthy.common.ItemType
-import com.moondroid.behelthy.domain.model.status.onError
-import com.moondroid.behelthy.domain.model.status.onSuccess
-import com.moondroid.behelthy.domain.usecase.item.AddItemUseCase
+import com.moondroid.legacy.common.Extensions.logException
+import com.moondroid.legacy.common.ItemType
+import com.moondroid.legacy.domain.model.status.onError
+import com.moondroid.legacy.domain.model.status.onSuccess
+import com.moondroid.legacy.domain.usecase.item.AddItemUseCase
 import com.moondroid.legacy.BHApp
 import com.moondroid.legacy.R
 import com.moondroid.legacy.databinding.FragmentItemSettingBinding

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.moondroid.behelthy.domain.model.Item
+import com.moondroid.legacy.domain.model.Item
 import com.moondroid.legacy.databinding.ItemItemListBinding
 import kotlin.properties.Delegates
 

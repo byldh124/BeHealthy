@@ -7,11 +7,11 @@ import android.os.Bundle
 import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import com.moondroid.behelthy.common.Extensions.exitApp
-import com.moondroid.behelthy.common.Extensions.logException
-import com.moondroid.behelthy.common.Extensions.repeatOnStarted
-import com.moondroid.behelthy.common.ResponseCode
-import com.moondroid.behelthy.domain.usecase.application.AppVersionUseCase
+import com.moondroid.legacy.common.Extensions.exitApp
+import com.moondroid.legacy.common.Extensions.logException
+import com.moondroid.legacy.common.Extensions.repeatOnStarted
+import com.moondroid.legacy.common.ResponseCode
+import com.moondroid.legacy.domain.usecase.application.AppVersionUseCase
 import com.moondroid.legacy.BHApp
 import com.moondroid.legacy.BuildConfig
 import com.moondroid.legacy.R

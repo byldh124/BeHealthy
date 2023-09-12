@@ -1,14 +1,14 @@
 package com.moondroid.legacy.view.ui.item.list
 
 import androidx.lifecycle.viewModelScope
-import com.moondroid.behelthy.common.Extensions.debug
-import com.moondroid.behelthy.common.Extensions.logException
-import com.moondroid.behelthy.domain.model.Item
-import com.moondroid.behelthy.domain.model.status.onError
-import com.moondroid.behelthy.domain.model.status.onFail
-import com.moondroid.behelthy.domain.model.status.onSuccess
-import com.moondroid.behelthy.domain.usecase.application.GetSayingUseCase
-import com.moondroid.behelthy.domain.usecase.item.GetItemsUseCase
+import com.moondroid.legacy.common.Extensions.debug
+import com.moondroid.legacy.common.Extensions.logException
+import com.moondroid.legacy.domain.model.Item
+import com.moondroid.legacy.domain.model.status.onError
+import com.moondroid.legacy.domain.model.status.onFail
+import com.moondroid.legacy.domain.model.status.onSuccess
+import com.moondroid.legacy.domain.usecase.application.GetSayingUseCase
+import com.moondroid.legacy.domain.usecase.item.GetItemsUseCase
 import com.moondroid.legacy.BHApp
 import com.moondroid.legacy.utils.MutableEventFlow
 import com.moondroid.legacy.utils.asEventFlow
