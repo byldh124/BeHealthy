@@ -18,7 +18,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.moondroid.behealthy"
+        applicationId = "com.moondroid.legacy"
         minSdk = 23
         targetSdk = 34
         versionCode = 1
