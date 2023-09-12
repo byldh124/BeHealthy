@@ -10,7 +10,10 @@ import com.moondroid.behealthy.navigation.MyDestination
 import com.moondroid.behealthy.navigation.MyNavGraph
 import com.moondroid.behealthy.navigation.MyNavigationAction
 import com.moondroid.behealthy.ui.theme.BeHealthyTheme
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

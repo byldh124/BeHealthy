@@ -8,6 +8,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.moondroid.behealthy.navigation.MyNavigationAction
 
 @Composable
@@ -15,6 +17,7 @@ fun SplashScreen(
     navigationAction: MyNavigationAction,
 ) {
     MyBox(navigationAction)
+    val viewModel :SplashViewModel = hiltViewModel()
 }
 
 @Composable
