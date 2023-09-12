@@ -27,7 +27,6 @@ android {
         jvmTarget = libs.versions.java.get()
     }
 
-    @Suppress("UnstableApiUsage")
     buildFeatures {
         buildConfig = true
     }

@@ -1,28 +1,25 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.android.hilt)
     alias(libs.plugins.android.navigation.safeargs)
+    id("com.google.dagger.hilt.android")
     alias(libs.plugins.google.service)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.android.kotlin.kapt)
 }
 
-val properties = gradleLocalProperties(rootDir)
-
+val properties = com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)
 android {
     namespace = "com.moondroid.behealthy"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.moondroid.behealthy"
         minSdk = 23
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
-        versionName = "0.0.1"
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -37,69 +34,63 @@ android {
     }
 
     buildTypes {
-        debug {
-            isMinifyEnabled = false
-            isDebuggable = true
-        }
-
         release {
-            isMinifyEnabled = true
-            isShrinkResources = false
-            isDebuggable = false
-            @Suppress("UnstableApiUsage")
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-
     kotlinOptions {
-        jvmTarget = libs.versions.java.get()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
-
-    @Suppress("UnstableApiUsage")
     buildFeatures {
-        buildConfig = true
-        viewBinding = true
-        dataBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 
 dependencies {
     implementation(libs.bundles.kotlin)
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.google.material)
+    implementation("androidx.activity:activity-compose:1.7.0")
+    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.material3:material3")
 
-    // Hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    val navVersion = "2.7.0"
+    implementation("androidx.navigation:navigation-compose:$navVersion")
+    implementation("com.github.bumptech.glide:compose:1.0.0-alpha.1")
 
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.junit.ext)
-    androidTestImplementation(libs.junit.espresso)
+    val hiltVersion = "2.44"
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
-    // Glide
-    implementation(libs.glide.android)
-    kapt(libs.glide.compiler)
 
-    // Gson
-    implementation(libs.google.gson)
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    // Lifecycle
-    kapt(libs.androidx.lifecycle.compiler)
-    implementation(libs.bundles.lifecycle)
-
-    // Navigation
-    implementation(libs.bundles.navigation)
-
-    implementation(libs.bundles.firebase)
+    implementation(platform("com.google.firebase:firebase-bom:32.1.0"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-messaging-ktx")
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
 
     implementation(libs.google.sign)
 

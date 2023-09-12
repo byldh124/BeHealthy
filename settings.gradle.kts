@@ -17,7 +17,8 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "BeHealthy"
-include (":app")
+include (":legacy")
 include(":data")
 include(":domain")
 include(":common")
+include(":app")

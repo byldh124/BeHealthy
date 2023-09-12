@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/itemSelectFragment">
+
+    <fragment
+        android:id="@+id/itemSelectFragment"
+        android:name="com.moondroid.legacy.view.ui.item.add.ItemSelectFragment"
+        android:label="ItemSelectFragment"
+        tools:layout="@layout/fragment_item_select">
+        <action
+            android:id="@+id/toItemSettingFragment"
+            app:destination="@id/itemSettingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/itemSettingFragment"
+        android:name="com.moondroid.legacy.view.ui.item.add.ItemSettingFragment"
+        android:label="ItemSettingFragment"
+        tools:layout="@layout/fragment_item_setting">
+
+        <argument
+            android:name="itemType"
+            app:argType="com.moondroid.behelthy.common.ItemType" />
+    </fragment>
+</navigation>

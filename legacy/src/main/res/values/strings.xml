@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">참다</string>
+    <string name="desc_sever_error">네트워크 요청에 실패했습니다.\n다시 시도해주세요.</string>
+    <string name="desc_new_item">새로운 목표 설정</string>
+    <string name="desc_app_compaign">마음까지 건강한 삶</string>
+    <string name="desc_start_with_guest">게스트로 시작하기</string>
+    <string name="desc_sign_with_google">구글 로그인</string>
+    <string name="error_kakao_user_info">유저 정보를 찾을 수 없습니다.</string>
+    <string name="cmn_confirm">확인</string>
+</resources>

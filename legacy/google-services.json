@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "19850074881",
+    "project_id": "behealthy-694fa",
+    "storage_bucket": "behealthy-694fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19850074881:android:9f7cdd0c5180e298d7d900",
+        "android_client_info": {
+          "package_name": "com.moondroid.behealthy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19850074881-ggq657aj6t7gs0kjc4h1ici1q07f6pjg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgBSztpqsKBr008gkBvtmAuqv9JgAYS5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "19850074881-ggq657aj6t7gs0kjc4h1ici1q07f6pjg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19850074881:android:0fa07ba6c9e0818ad7d900",
+        "android_client_info": {
+          "package_name": "com.moondroid.legacy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19850074881-ggq657aj6t7gs0kjc4h1ici1q07f6pjg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgBSztpqsKBr008gkBvtmAuqv9JgAYS5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "19850074881-ggq657aj6t7gs0kjc4h1ici1q07f6pjg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
