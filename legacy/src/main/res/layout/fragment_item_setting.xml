@@ -7,7 +7,7 @@
             name="itemType"
             type="ItemType" />
 
-        <import type="com.moondroid.legacy.common.ItemType" />
+        <import type="com.moondroid.behealthy.common.ItemType" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

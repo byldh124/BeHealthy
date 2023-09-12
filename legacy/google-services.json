@@ -36,9 +36,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:19850074881:android:0fa07ba6c9e0818ad7d900",
+        "mobilesdk_app_id": "1:19850074881:android:87288c10b693fe48d7d900",
         "android_client_info": {
-          "package_name": "com.moondroid.legacy"
+          "package_name": "com.moondroid.behealthy.legacy"
         }
       },
       "oauth_client": [

@@ -14,11 +14,11 @@ plugins {
 val properties = gradleLocalProperties(rootDir)
 
 android {
-    namespace = "com.moondroid.legacy"
+    namespace = "com.moondroid.behealthy.legacy"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.moondroid.legacy"
+        applicationId = "com.moondroid.behealthy.legacy"
         minSdk = 23
         targetSdk = 34
         versionCode = 1
