@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.moondroid.behealthy.BuildConfig
 import com.moondroid.behealthy.R
+import com.moondroid.behealthy.common.Extensions.debug
 import com.moondroid.behealthy.navigation.MyNavigationAction
 import com.moondroid.behealthy.ui.theme.BoxColor
 import com.moondroid.behealthy.ui.theme.JALNAN
@@ -51,20 +52,15 @@ fun SplashScreen(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        when (uiState.state) {
-            SplashUiState.Fail -> {
-                //TODO 메세지 박스 띄우기
-            }
-
-
-            SplashUiState.NotExist -> {
-                //todo 메세지 박스 띄우기
-            }
-
-            SplashUiState.Loading -> Logo(color = color)
+        //Logo(color = color)
+        when (val state = uiState.state) {
             SplashUiState.Home -> navigationAction.toHome()
             SplashUiState.Sign -> navigationAction.toSign()
             SplashUiState.Update -> requestUpdate(context)
+            is SplashUiState.Fail -> {
+                debug("fail : ${state.message}")
+            }
+            SplashUiState.Ready -> Logo(color = color)
         }
     }
 }

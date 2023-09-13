@@ -17,10 +17,9 @@ import javax.inject.Inject
 
 
 sealed interface SplashUiState {
-    data object Loading : SplashUiState
+    data object Ready : SplashUiState
     data object Update : SplashUiState
-    data object NotExist : SplashUiState
-    data object Fail : SplashUiState
+    data class Fail(val message: String) : SplashUiState
     data object Sign : SplashUiState
     data object Home : SplashUiState
 }
@@ -34,25 +33,25 @@ class SplashViewModel @Inject constructor(
     private val appVersionUseCase: AppVersionUseCase,
     private val getProfileUseCase: GetProfileUseCase,
 ) : BaseViewModel() {
-    private val _uiState = MutableStateFlow(SplashScreenUiState(SplashUiState.Loading))
+    private val _uiState = MutableStateFlow(SplashScreenUiState(SplashUiState.Ready))
     val uiState = _uiState.asStateFlow()
 
     fun checkAppVersion(versionCode: Int, versionName: String, packageName: String) {
-        _uiState.value = SplashScreenUiState(SplashUiState.Loading)
         viewModelScope.launch {
             appVersionUseCase(versionCode, versionName, packageName).collect { result ->
                 result.onSuccess {
                     checkUserInfo()
                 }.onFail {
                     val uiState = when (it) {
-                        ResponseCode.NOT_EXIST -> SplashUiState.NotExist
+                        ResponseCode.NOT_EXIST -> SplashUiState.Fail("해당 버전이 존재하지 않습니다. [$versionName]")
                         ResponseCode.INACTIVE -> SplashUiState.Update
-                        else -> SplashUiState.Fail
+                        else -> SplashUiState.Fail("서버 에러 - 고객센터에 문의해주세요.")
                     }
                     _uiState.value = SplashScreenUiState(uiState)
 
                 }.onError {
-                    _uiState.value = SplashScreenUiState(SplashUiState.Fail)
+                    _uiState.value =
+                        SplashScreenUiState(SplashUiState.Fail("Error\n${it.javaClass.simpleName}"))
                 }
             }
         }
