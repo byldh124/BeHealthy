@@ -31,7 +31,7 @@ fun MyNavGraph(
             //val noteViewModel = hiltViewModel<NoteViewModel>()
 
             SignScreen(
-                navController = navController
+                navigationAction
             )
         }
 

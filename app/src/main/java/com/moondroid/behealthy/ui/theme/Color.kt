@@ -10,6 +10,15 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
+val Blue01 = Color(0xFF144272)
+val Blue02 = Color(0xFF0A2647)
+val Blue03 = Color(0xFF205295)
+val Blue04 = Color(0xFF2C74B3)
+
+val Gray01 = Color(0xFF76787b)
+val Gray02 = Color(0xFF4c4d4e)
+val Gray03 = Color(0xFF3d3d3d)
+
 enum class BoxColor(val color: Color) {
     Box01(Color(0xFFFFE533)),
     Box02(Color(0xFFF0D1C4)),
