@@ -15,8 +15,6 @@ fun SignScreen(
     navController: NavController,
 ) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Button(onClick = { navController.navigate(HOME_ROUTE) }) {
-            Text(text = "홈으로")
-        }
+        Text(text = "로그인 화면 입니다.")
     }
 }

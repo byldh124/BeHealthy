@@ -60,7 +60,7 @@ androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "
 androidx-camera-extensions = { module = "androidx.camera:camera-extensions", version.ref = "camerax" }
 
 # room
-compose = { module = "com.github.bumptech.glide:compose", version.ref = "compose" }
+glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "compose" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltVersion" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
