@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,7 +32,11 @@ fun SplashScreen(
 
     val context = LocalContext.current
 
-    LaunchedEffect(Unit) {
+    val action = remember {
+        viewModel.action
+    }
+
+    LaunchedEffect(key1 = context.packageName) {
         viewModel.checkAppVersion(
             BuildConfig.VERSION_CODE,
             BuildConfig.VERSION_NAME,
@@ -42,26 +44,28 @@ fun SplashScreen(
         )
     }
 
+    LaunchedEffect(key1 = action.value) {
+        when (val value = action.value) {
+            SplashAction.Home -> navigationAction.toHome()
+            SplashAction.Sign -> navigationAction.toSign()
+            SplashAction.Update -> requestUpdate(context)
+            is SplashAction.Fail -> {
+                debug("fail : ${value.message}")
+            }
+
+            SplashAction.Ready -> {}
+        }
+    }
+
     val color = remember {
         BoxColor.getRandom().color
     }
-
-    val uiState: SplashScreenUiState by viewModel.uiState.collectAsState()
 
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        //Logo(color = color)
-        when (val state = uiState.state) {
-            SplashUiState.Home -> navigationAction.toHome()
-            SplashUiState.Sign -> navigationAction.toSign()
-            SplashUiState.Update -> requestUpdate(context)
-            is SplashUiState.Fail -> {
-                debug("fail : ${state.message}")
-            }
-            SplashUiState.Ready -> Logo(color = color)
-        }
+        Logo(color = color)
     }
 }
 

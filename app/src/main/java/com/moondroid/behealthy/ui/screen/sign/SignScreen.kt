@@ -17,9 +17,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.airbnb.lottie.utils.Logger.debug
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.moondroid.behealthy.R
+import com.moondroid.behealthy.common.Extensions
+import com.moondroid.behealthy.common.Extensions.debug
 import com.moondroid.behealthy.navigation.MyDestination
 import com.moondroid.behealthy.navigation.MyNavigationAction
 import com.moondroid.behealthy.ui.theme.Blue01
@@ -29,7 +32,6 @@ import com.moondroid.behealthy.ui.theme.NANUM_EB
 fun SignScreen(
     navigationAction: MyNavigationAction,
 ) {
-
     Column(
         modifier = Modifier
             .fillMaxSize()

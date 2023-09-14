@@ -26,6 +26,12 @@ object Extensions {
         }
     }
 
+    fun debug(msg: String){
+        if (BuildConfig.DEBUG) {
+            Log.e(TAG, msg)
+        }
+    }
+
     fun Activity.exitApp() {
         this.moveTaskToBack(true)
         this.finish()
