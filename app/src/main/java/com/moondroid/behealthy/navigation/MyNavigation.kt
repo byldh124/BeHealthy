@@ -1,8 +1,6 @@
 package com.moondroid.behealthy.navigation
 
 import androidx.navigation.NavHostController
-import androidx.navigation.NavOptions
-import com.moondroid.behealthy.common.Extensions.debug
 import com.moondroid.behealthy.navigation.MyDestination.HOME_ROUTE
 import com.moondroid.behealthy.navigation.MyDestination.SIGN_ROUTE
 import com.moondroid.behealthy.navigation.MyDestination.SPLASH_ROUTE
@@ -15,13 +13,21 @@ object MyDestination {
 }
 
 class MyNavigationAction(navController: NavHostController) {
-    val toSign: () -> Unit = {
+    val toSignFromSplash: () -> Unit = {
         navController.navigate(SIGN_ROUTE) {
             popUpTo(SPLASH_ROUTE) { inclusive = true }
         }
     }
 
-    val toHome: () -> Unit = {
-        navController.navigate(HOME_ROUTE)
+    val toHomeFromSign: () -> Unit = {
+        navController.navigate(HOME_ROUTE) {
+            popUpTo(SIGN_ROUTE) { inclusive = true }
+        }
+    }
+
+    val toHomeFromSplash: () -> Unit = {
+        navController.navigate(HOME_ROUTE) {
+            popUpTo(SPLASH_ROUTE) { inclusive = true }
+        }
     }
 }

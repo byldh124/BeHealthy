@@ -46,8 +46,8 @@ fun SplashScreen(
 
     LaunchedEffect(key1 = action.value) {
         when (val value = action.value) {
-            SplashAction.Home -> navigationAction.toHome()
-            SplashAction.Sign -> navigationAction.toSign()
+            SplashAction.Home -> navigationAction.toHomeFromSplash()
+            SplashAction.Sign -> navigationAction.toSignFromSplash()
             SplashAction.Update -> requestUpdate(context)
             is SplashAction.Fail -> {
                 debug("fail : ${value.message}")
