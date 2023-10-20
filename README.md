@@ -28,7 +28,6 @@
 - Firebase
   - Analytics
   - Crashslytics
-  - Dynamic Link
-  - Storage
+  - Cloud Message
 - Kakao Auth
 - Lottie Animation
