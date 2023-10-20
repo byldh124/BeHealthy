@@ -3,7 +3,6 @@ package com.moondroid.behealthy.ui.screen.sign
 import android.content.Context
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
@@ -40,6 +39,8 @@ class SignViewModel @Inject constructor(
             requestSign()
         }
     }
+
+
 
     fun getKakaoAccount(context: Context) {
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(context = context)) {
